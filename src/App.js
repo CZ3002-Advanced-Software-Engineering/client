@@ -1,11 +1,8 @@
 import React from 'react'
+import SignIn from './pages/signin'
 
 function App() {
-    return (
-        <div>
-            <h1>hello world</h1>
-        </div>
-    )
+    return <SignIn />
 }
 
 export default App
