@@ -32,6 +32,10 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
     const classes = useStyles()
 
+    const onClick = () => {
+        console.log('hello')
+    }
+
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -40,7 +44,7 @@ export default function SignIn() {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign in
+                    Sign In
                 </Typography>
                 <form className={classes.form} noValidate>
                     <TextField

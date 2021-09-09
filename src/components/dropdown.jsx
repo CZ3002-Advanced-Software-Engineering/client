@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-function Dropdown({ labelId, id, menuItems }) {
+const Dropdown = ({ labelId, id, menuItems }) => {
     const classes = useStyles()
 
     const [value, setValue] = React.useState('')
