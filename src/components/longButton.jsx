@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 
-const CommonButton = ({ text, type, variant, color, className }) => (
+const LongButton = ({ text, type, variant, color, className }) => (
     <Button
         type={type}
         fullWidth
@@ -13,4 +13,4 @@ const CommonButton = ({ text, type, variant, color, className }) => (
     </Button>
 )
 
-export default CommonButton
+export default LongButton
