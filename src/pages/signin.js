@@ -1,91 +1,82 @@
-import React from 'react'
-import Avatar from '@material-ui/core/Avatar'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import TextField from '@material-ui/core/TextField'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import { Button } from '@material-ui/core'
-import LongButton from '../components/longButton'
-import Dropdown from '../components/dropdown'
-
-
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-}))
+import React, { useState } from 'react'
+import { Card, Form, Button, Dropdown } from 'react-bootstrap/'
+import '../styles/signin.css'
+import { useHistory } from 'react-router-dom'
+import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
 
 export default function SignIn() {
-    const classes = useStyles()
+    const history = useHistory()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [domain, setDomain] = useState('Staff')
 
-    const onClick = () => {
-        console.log('hello')
+    function validateForm() {
+        return email.length > 0 && password.length > 0
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        if (domain === 'Staff') {
+            console.log(domain)
+            // history.push('/teacher_home')
+        } else if (domain === 'Student') {
+            console.log(domain)
+            history.push('/student_home')
+        }
     }
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign In
-                </Typography>
-                <form className={classes.form} noValidate>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                    />
-                    <Dropdown
-                        labelId="test"
-                        id="test"
-                        menuItems={['Staff', 'Student']}
-                    />
-                    <LongButton
-                        text="Sign In"
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                        handleClick={onClick}
-                    />
-                </form>
-            </div>
-        </Container>
+        <div className="Login">
+            <Card bg="light">
+                <Card.Body>
+                    <IoMdCheckmarkCircleOutline size="25%" color="green" />
+                    <br />
+                    <h1>Sign In</h1>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group
+                            className="input-field"
+                            size="lg"
+                            controlId="email"
+                        >
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control
+                                autoFocus
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group
+                            className="input-field"
+                            size="lg"
+                            controlId="password"
+                        >
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </Form.Group>
+                        <select
+                            className="domain input-field"
+                            required
+                            onChange={(e) => setDomain(e.target.value)}
+                        >
+                            <option value="Staff">Staff</option>
+                            <option value="Student">Student</option>
+                        </select>
+                        <Button
+                            className="signin-btn"
+                            size="lg"
+                            type="submit"
+                            disabled={!validateForm()}
+                        >
+                            Sign In
+                        </Button>
+                    </Form>
+                </Card.Body>
+            </Card>
+        </div>
     )
 }
