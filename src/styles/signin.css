@@ -5,6 +5,10 @@
     }
 
     h1 {
+        font-weight: bold;
+    }
+
+    h4 {
         margin: 1.5rem;
     }
 

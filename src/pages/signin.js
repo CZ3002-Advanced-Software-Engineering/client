@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Card, Form, Button, Dropdown } from 'react-bootstrap/'
+import { Card, Form, Button } from 'react-bootstrap/'
 import '../styles/signin.css'
 import { useHistory } from 'react-router-dom'
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
@@ -29,9 +29,10 @@ export default function SignIn() {
         <div className="Login">
             <Card bg="light">
                 <Card.Body>
-                    <IoMdCheckmarkCircleOutline size="25%" color="green" />
+                    <IoMdCheckmarkCircleOutline size="10rem" color="green" />
                     <br />
-                    <h1>Sign In</h1>
+                    <h1>FRAS</h1>
+                    <h4>Sign In</h4>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group
                             className="input-field"
