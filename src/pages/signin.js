@@ -18,7 +18,7 @@ export default function SignIn() {
         event.preventDefault()
         if (domain === 'Staff') {
             console.log(domain)
-            // history.push('/teacher_home')
+            history.push('/teacher_home')
         } else if (domain === 'Student') {
             console.log(domain)
             history.push('/student_home')

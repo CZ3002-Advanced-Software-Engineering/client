@@ -2,7 +2,7 @@ import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
 
-const StudentNavbar = () => (
+const TeacherNavbar = () => (
     <>
         <div className="row">
             <div className="col-md-12">
@@ -13,7 +13,7 @@ const StudentNavbar = () => (
                     className="py-4"
                     style={{ padding: 30 }}
                 >
-                    <Navbar.Brand href="/student_home">
+                    <Navbar.Brand href="/teacher_home">
                         <IoMdCheckmarkCircleOutline
                             size="3rem"
                             color="green"
@@ -24,12 +24,13 @@ const StudentNavbar = () => (
                     <Navbar.Toggle />
                     <Navbar.Collapse>
                         <Nav className="ms-auto">
-                            <Nav.Link href="/view_attendance_self">
+                            <Nav.Link href="/take_attendance">
+                                Take Attendance
+                            </Nav.Link>
+                            <Nav.Link href="/view_attendance_class">
                                 View Attendance
                             </Nav.Link>
-                            <Nav.Link href="/submit_documents">
-                                Submit Documents
-                            </Nav.Link>
+                            <Nav.Link href="/absentees">Absentees</Nav.Link>
                             <Nav.Link href="/account">Account</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
@@ -39,4 +40,4 @@ const StudentNavbar = () => (
     </>
 )
 
-export default StudentNavbar
+export default TeacherNavbar

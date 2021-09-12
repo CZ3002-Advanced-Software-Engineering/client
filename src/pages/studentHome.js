@@ -3,11 +3,11 @@ import { Card, Container } from 'react-bootstrap/'
 import { IoAlertCircle } from 'react-icons/io5'
 import { FaUserCheck } from 'react-icons/fa'
 import StudentNavbar from '../components/navbarStudent'
-import CommonButton from '../components/button'
+import CommonButton from '../components/commonButton'
 import '../styles/studentHome.css'
 
 export default function StudentHome() {
-    const hasSetUp = false
+    const hasSetUp = true
 
     const setup = () => {
         console.log('hello')
@@ -70,12 +70,10 @@ export default function StudentHome() {
     return (
         <div>
             <StudentNavbar />
-            <Container>
-                <Card className="card">
-                    <Card.Header as="h2">Profile Status</Card.Header>
-                    {hasSetUp ? profileDoneCard : profileUndoneCard}
-                </Card>
-            </Container>
+            <Card className="card">
+                <Card.Header as="h2">Profile Status</Card.Header>
+                {hasSetUp ? profileDoneCard : profileUndoneCard}
+            </Card>
         </div>
     )
 }
