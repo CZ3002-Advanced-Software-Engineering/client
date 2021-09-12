@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Container } from 'react-bootstrap/'
+import { Card } from 'react-bootstrap/'
 import TeacherNavbar from '../components/navbarTeacher'
 
 export default function TakeAttendance() {

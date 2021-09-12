@@ -10,13 +10,13 @@ function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/" component={SignIn} exact />
-                <Route path="/student_home" component={StudentHome} exact />
-                <Route path="/teacher_home" component={TeacherHome} exact />
+                <Route exact path="/" component={SignIn} />
+                <Route exact path="/student_home" component={StudentHome} />
+                <Route exact path="/teacher_home" component={TeacherHome} />
                 <Route
+                    exact
                     path="/take_attendance"
                     component={TakeAttendance}
-                    exact
                 />
             </Switch>
         </Router>
