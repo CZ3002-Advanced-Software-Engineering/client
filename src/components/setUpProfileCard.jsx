@@ -13,7 +13,7 @@ const SetUpProfileCard = ({ hasSetUp }) => (
         <Card.Text as="h5">
             <div className="row">
                 <div className="icon-col">
-                    {{ hasSetUp } ? (
+                    {hasSetUp ? (
                         <FaUserCheck
                             className="icon"
                             size="100"
@@ -28,7 +28,7 @@ const SetUpProfileCard = ({ hasSetUp }) => (
                     )}
                 </div>
                 <div className="col text">
-                    {{ hasSetUp }
+                    {hasSetUp
                         ? 'Your facial recognition profile has been set up. You are ready to take attendance using facial recognition.'
                         : 'You have not set up your facial recognition profile yet. Please set up in order to take attendance using facial recognition.'}
                 </div>
@@ -40,7 +40,7 @@ const SetUpProfileCard = ({ hasSetUp }) => (
             handleClick={() => {
                 console.log({ hasSetUp })
             }}
-            text={{ hasSetUp } ? 'Update Profile' : 'Set Up Now'}
+            text={hasSetUp ? 'Update Profile' : 'Set Up Now'}
         />
     </Card.Body>
 )
