@@ -1,0 +1,48 @@
+[
+    {
+        "name": "cz3002",
+        "groups": [
+            {
+                "name": "TS1",
+                "day": "Wed",
+                "starttime": "1030",
+                "endtime": "1230"
+            },
+            {
+                "name": "TS2",
+                "day": "Thu",
+                "starttime": "1030",
+                "endtime": "1230"
+            },
+            {
+                "name": "TS3",
+                "day": "Fri",
+                "starttime": "0830",
+                "endtime": "1030"
+            }
+        ]
+    },
+    {
+        "name": "cz3003",
+        "groups": [
+            {
+                "name": "SB1",
+                "day": "Wed",
+                "starttime": "0830",
+                "endtime": "1030"
+            },
+            {
+                "name": "SB2",
+                "day": "Thu",
+                "starttime": "1430",
+                "endtime": "1630"
+            },
+            {
+                "name": "SB3",
+                "day": "Fri",
+                "starttime": "1230",
+                "endtime": "1430"
+            }
+        ]
+    }
+]
