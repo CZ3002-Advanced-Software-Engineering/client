@@ -7,6 +7,7 @@ const CommonButton = ({
     size,
     type,
     className,
+    disabled,
     handleClick,
     text,
 }) => (
@@ -15,6 +16,7 @@ const CommonButton = ({
         size={size}
         type={type}
         className={className}
+        disabled={disabled}
         onClick={handleClick}
     >
         {text}

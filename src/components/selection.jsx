@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import CommonButton from './commonButton'
 
 function Selection() {
+    // set options
     const [courses, setCourses] = useState([])
     const [groups, setGroups] = useState([])
-    const [time, setTime] = useState([])
+
+    // user selected option
+    const [selectedCourse, setCourse] = useState('')
+    const [selectedGroup, setGroup] = useState('')
+    const [selectedMode, setMode] = useState('')
+
+    function validateSelections() {
+        return (
+            selectedCourse !== '' && selectedGroup !== '' && selectedMode !== ''
+        )
+    }
 
     useEffect(() => {
         axios
@@ -16,22 +28,36 @@ function Selection() {
     const selectCourse = (e) => {
         const index = Number(e.target.value)
         if (index !== -1) {
-            console.log(index)
+            // set user selected course
+            setCourse(e.target.options[index + 1].text)
+
+            // reset group
+            setGroup('')
+
+            // set options for group selection
             setGroups(courses[index].groups)
         } else {
-            setGroups([])
+            setCourse('')
         }
     }
 
-    // const selectGroup = (e) => {
-    //     const index = Number(e.target.value)
-    //     if (index !== -1) {
-    //         console.log(index)
-    //         setTime(courses[index].groups)
-    //     } else {
-    //         setTime([])
-    //     }
-    // }
+    const selectGroup = (e) => {
+        const index = Number(e.target.value)
+        console.log(index)
+        if (index !== -1) {
+            setGroup(e.target.options[index + 1].text)
+        } else {
+            setGroup('')
+        }
+    }
+
+    const selectMode = (e) => {
+        if (e.target.value !== '-1') {
+            setMode(e.target.value)
+        } else {
+            setMode('')
+        }
+    }
 
     return (
         <div>
@@ -44,24 +70,16 @@ function Selection() {
                 ))}
             </select>
             <br />
-            <select required>
+            <select required onChange={selectGroup}>
                 <option value="-1">Select Group</option>
-                {groups.map((group) => (
-                    <option key={group.name} value={group.name}>
+                {groups.map((group, index) => (
+                    <option key={group.name} value={index}>
                         {group.name}
                     </option>
                 ))}
             </select>
-            {/* <select>
-                <option value="-1">Select Time Slot</option>
-                {time.map((group) => (
-                    <option key={group.name} value={group.name}>
-                        {group.name}
-                    </option>
-                ))}
-            </select> */}
             <br />
-            <select required>
+            <select required onChange={selectMode}>
                 <option value="-1">Select Attendance Taking Mode</option>
                 <option key="0" value="face">
                     Facial Recognition
@@ -70,6 +88,18 @@ function Selection() {
                     Manual
                 </option>
             </select>
+            <br />
+            <CommonButton
+                variant="primary"
+                size="lg"
+                disabled={!validateSelections()}
+                handleClick={() => {
+                    console.log({ selectedCourse })
+                    console.log({ selectedGroup })
+                    console.log({ selectedMode })
+                }}
+                text="Take Attendance"
+            />
         </div>
     )
 }
