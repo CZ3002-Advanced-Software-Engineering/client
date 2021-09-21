@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import CommonButton from './commonButton'
 
-function Selection() {
+function AttSelection() {
     // set options
     const [courses, setCourses] = useState([])
     const [groups, setGroups] = useState([])
@@ -104,4 +104,4 @@ function Selection() {
     )
 }
 
-export default Selection
+export default AttSelection
