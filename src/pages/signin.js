@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, Form, Button } from 'react-bootstrap/'
 import '../styles/signin.css'
 import { useHistory } from 'react-router-dom'
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
+import { login, authFetch } from '../auth'
+import TeacherHome from './teacherHome'
 
 export default function SignIn() {
     const history = useHistory()
@@ -16,13 +18,32 @@ export default function SignIn() {
 
     function handleSubmit(event) {
         event.preventDefault()
-        if (domain === 'Staff') {
-            console.log(domain)
-            history.push('/teacher_home')
-        } else if (domain === 'Student') {
-            console.log(domain)
-            history.push('/student_home')
+        // if (domain === 'Staff') {
+        //     console.log(domain)
+        //     history.push('/teacher_home')
+        // } else if (domain === 'Student') {
+        //     console.log(domain)
+        //     history.push('/student_home')
+        // }
+        const opts = {
+            email,
+            password,
         }
+        console.log(opts)
+        fetch('/api/login', {
+            method: 'post',
+            body: JSON.stringify(opts),
+        })
+            .then((r) => r.json())
+            .then((token) => {
+                if (token.access_token) {
+                    login(token)
+                    console.log(token)
+                    // history.push('/teacher_home')
+                } else {
+                    console.log('Please type in correct username/password')
+                }
+            })
     }
 
     return (
@@ -42,7 +63,7 @@ export default function SignIn() {
                             <Form.Label>Email</Form.Label>
                             <Form.Control
                                 autoFocus
-                                type="email"
+                                // type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />

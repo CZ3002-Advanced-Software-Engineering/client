@@ -31,7 +31,7 @@ const TeacherNavbar = () => (
                                 View Attendance
                             </Nav.Link>
                             <Nav.Link href="/absentees">Absentees</Nav.Link>
-                            <Nav.Link href="/account">Account</Nav.Link>
+                            {/* <Nav.Link onClick={() => logout()}>Logout</Nav.Link> */}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
