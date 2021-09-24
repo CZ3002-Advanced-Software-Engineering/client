@@ -39,7 +39,7 @@ export default function SignIn() {
                 if (token.access_token) {
                     login(token)
                     console.log(token)
-                    // history.push('/teacher_home')
+                    history.push('/teacher_home')
                 } else {
                     console.log('Please type in correct username/password')
                 }

@@ -1,9 +1,10 @@
 import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
+import { logout, useAuth } from '../auth'
 
-const TeacherNavbar = () => (
-    <>
+export default function TeacherNavbar() {
+    return (
         <div className="row">
             <div className="col-md-12">
                 <Navbar
@@ -31,13 +32,10 @@ const TeacherNavbar = () => (
                                 View Attendance
                             </Nav.Link>
                             <Nav.Link href="/absentees">Absentees</Nav.Link>
-                            {/* <Nav.Link onClick={() => logout()}>Logout</Nav.Link> */}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
             </div>
         </div>
-    </>
-)
-
-export default TeacherNavbar
+    )
+}

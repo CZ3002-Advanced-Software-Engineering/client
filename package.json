@@ -17,7 +17,6 @@
         "react-token-auth": "^1.1.9"
     },
     "scripts": {
-        "start-api": "cd api && flask run --no-debugger",
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
