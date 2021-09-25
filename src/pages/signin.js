@@ -4,7 +4,6 @@ import '../styles/signin.css'
 import { useHistory } from 'react-router-dom'
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
 import { login, authFetch } from '../auth'
-import TeacherHome from './teacherHome'
 
 export default function SignIn() {
     const history = useHistory()

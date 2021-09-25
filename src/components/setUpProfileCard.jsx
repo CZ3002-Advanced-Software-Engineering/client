@@ -1,9 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Card } from 'react-bootstrap/'
+import { Card, Button } from 'react-bootstrap/'
 import { IoAlertCircle } from 'react-icons/io5'
 import { FaUserCheck } from 'react-icons/fa'
-import CommonButton from './commonButton'
 import '../styles/setUpProfileCard.css'
 
 /* eslint-disable no-constant-condition */
@@ -34,14 +33,15 @@ const SetUpProfileCard = ({ hasSetUp }) => (
                 </div>
             </div>
         </Card.Text>
-        <CommonButton
+        <Button
             variant="primary"
             size="lg"
-            handleClick={() => {
+            onClick={() => {
                 console.log({ hasSetUp })
             }}
-            text={hasSetUp ? 'Update Profile' : 'Set Up Now'}
-        />
+        >
+            {hasSetUp ? 'Update Profile' : 'Set Up Now'}
+        </Button>
     </Card.Body>
 )
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import CommonButton from './commonButton'
+import { Button } from 'react-bootstrap'
 
 function AttSelection() {
     // set options
@@ -89,17 +89,18 @@ function AttSelection() {
                 </option>
             </select>
             <br />
-            <CommonButton
+            <Button
                 variant="primary"
                 size="lg"
                 disabled={!validateSelections()}
-                handleClick={() => {
+                onClick={() => {
                     console.log({ selectedCourse })
                     console.log({ selectedGroup })
                     console.log({ selectedMode })
                 }}
-                text="Take Attendance"
-            />
+            >
+                Take Attendance
+            </Button>
         </div>
     )
 }
