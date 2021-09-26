@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { Card, Button } from 'react-bootstrap/'
+import moment from 'moment'
 import CurrentDateTime from '../components/currentDateTime'
 import TeacherNavbar from '../components/navbarTeacher'
 import AttSelection from '../components/attSelection'
@@ -20,7 +21,7 @@ export default function TakeAttendance() {
 
     useEffect(() => {
         axios
-            .get('https://api.jsonbin.io/b/6141d16daa02be1d4448ac42/5')
+            .get('https://api.jsonbin.io/b/6141d16daa02be1d4448ac42/9')
             .then((response) => setCourses(response.data))
             .then((error) => console.log(error))
     }, [])
@@ -30,6 +31,27 @@ export default function TakeAttendance() {
         return (
             selectedCourse !== '' && selectedGroup !== '' && selectedMode !== ''
         )
+    }
+
+    function validateTime() {
+        const { day, starttime, endtime } = selectedGroup
+        const now = moment(Date())
+        const today = now.format('ddd')
+
+        // make start time 15 minutes earlier for buffer
+        const groupStartTime = moment(starttime, 'HHmm').subtract(15, 'minutes')
+        const groupEndTime = moment(endtime, 'HHmm')
+
+        // check if day of group is today
+        if (today !== day) {
+            return false
+        }
+
+        // check if current time within time slot
+        if (now.isAfter(groupStartTime) && now.isBefore(groupEndTime)) {
+            return true
+        }
+        return false
     }
 
     function getTimeSlot() {
@@ -44,7 +66,7 @@ export default function TakeAttendance() {
         console.log(selectedCourse.name)
         console.log(selectedGroup.name)
         console.log(selectedMode)
-        if (selectedMode === 'manual') {
+        if (selectedMode === 'manual' && validateTime()) {
             history.push({
                 pathname: 'take_attendance/manual',
                 state: {
@@ -54,8 +76,12 @@ export default function TakeAttendance() {
                     endTime: selectedGroup.endtime,
                 },
             })
-        } else {
+        } else if (selectedMode === 'face' && validateTime()) {
             // history.push('take_attendance/face')
+        } else {
+            alert(
+                'There are no lessons for the selected course and group currently.'
+            )
         }
     }
 
