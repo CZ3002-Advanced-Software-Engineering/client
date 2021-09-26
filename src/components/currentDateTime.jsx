@@ -7,7 +7,7 @@ export default function CurrentDateTime() {
     return (
         <Clock
             locale="en-sg"
-            format="dddd, MMMM, yyyy, HH:mm:ss A"
+            format="dddd, MMMM, yyyy, hh:mm:ss A"
             ticking={true}
             timezone="Asia/Singapore"
         />
