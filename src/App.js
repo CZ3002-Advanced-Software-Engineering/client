@@ -10,6 +10,7 @@ import SignIn from './pages/signin'
 import StudentHome from './pages/studentHome'
 import TeacherHome from './pages/teacherHome'
 import TakeAttendance from './pages/takeAttendance'
+import ManualAttendance from './pages/manualAttendance'
 
 export default function App() {
     return (
@@ -23,6 +24,11 @@ export default function App() {
                         exact
                         path="/take_attendance"
                         component={TakeAttendance}
+                    />
+                    <Route
+                        exact
+                        path="/take_attendance/manual"
+                        component={ManualAttendance}
                     />
                 </>
             </Switch>

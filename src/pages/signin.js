@@ -17,32 +17,32 @@ export default function SignIn() {
 
     function handleSubmit(event) {
         event.preventDefault()
-        // if (domain === 'Staff') {
-        //     console.log(domain)
-        //     history.push('/teacher_home')
-        // } else if (domain === 'Student') {
-        //     console.log(domain)
-        //     history.push('/student_home')
-        // }
-        const opts = {
-            email,
-            password,
+        if (domain === 'Staff') {
+            console.log(domain)
+            history.push('/teacher_home')
+        } else if (domain === 'Student') {
+            console.log(domain)
+            history.push('/student_home')
         }
-        console.log(opts)
-        fetch('/api/login', {
-            method: 'post',
-            body: JSON.stringify(opts),
-        })
-            .then((r) => r.json())
-            .then((token) => {
-                if (token.access_token) {
-                    login(token)
-                    console.log(token)
-                    history.push('/teacher_home')
-                } else {
-                    console.log('Please type in correct username/password')
-                }
-            })
+        // const opts = {
+        //     email,
+        //     password,
+        // }
+        // console.log(opts)
+        // fetch('/api/login', {
+        //     method: 'post',
+        //     body: JSON.stringify(opts),
+        // })
+        //     .then((r) => r.json())
+        //     .then((token) => {
+        //         if (token.access_token) {
+        //             login(token)
+        //             console.log(token)
+        //             history.push('/teacher_home')
+        //         } else {
+        //             console.log('Please type in correct username/password')
+        //         }
+        //     })
     }
 
     return (

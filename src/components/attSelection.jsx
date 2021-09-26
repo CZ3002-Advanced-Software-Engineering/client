@@ -1,35 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { Button } from 'react-bootstrap'
+import React from 'react'
 
-function AttSelection() {
-    // set options
-    const [courses, setCourses] = useState([])
-    const [groups, setGroups] = useState([])
+/* eslint-disable no-constant-condition */
 
-    // user selected option
-    const [selectedCourse, setCourse] = useState('')
-    const [selectedGroup, setGroup] = useState('')
-    const [selectedMode, setMode] = useState('')
-
-    function validateSelections() {
-        return (
-            selectedCourse !== '' && selectedGroup !== '' && selectedMode !== ''
-        )
-    }
-
-    useEffect(() => {
-        axios
-            .get('https://api.jsonbin.io/b/6141d16daa02be1d4448ac42/5')
-            .then((response) => setCourses(response.data))
-            .then((error) => console.log(error))
-    }, [])
-
+export default function AttSelection({
+    courses,
+    groups,
+    setGroups,
+    setCourse,
+    setGroup,
+    setMode,
+}) {
     const selectCourse = (e) => {
         const index = Number(e.target.value)
         if (index !== -1) {
             // set user selected course
-            setCourse(e.target.options[index + 1].text)
+            setCourse(courses[index])
 
             // reset group
             setGroup('')
@@ -43,9 +28,8 @@ function AttSelection() {
 
     const selectGroup = (e) => {
         const index = Number(e.target.value)
-        console.log(index)
         if (index !== -1) {
-            setGroup(e.target.options[index + 1].text)
+            setGroup(groups[index])
         } else {
             setGroup('')
         }
@@ -88,21 +72,6 @@ function AttSelection() {
                     Manual
                 </option>
             </select>
-            <br />
-            <Button
-                variant="primary"
-                size="lg"
-                disabled={!validateSelections()}
-                onClick={() => {
-                    console.log({ selectedCourse })
-                    console.log({ selectedGroup })
-                    console.log({ selectedMode })
-                }}
-            >
-                Take Attendance
-            </Button>
         </div>
     )
 }
-
-export default AttSelection
