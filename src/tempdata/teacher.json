@@ -44,5 +44,52 @@
                 "endtime": "1430"
             }
         ]
+    },
+    {
+        "name": "test course",
+        "groups": [
+            {
+                "name": "TEST1",
+                "day": "Mon",
+                "starttime": "0800",
+                "endtime": "2330"
+            },
+            {
+                "name": "TEST2",
+                "day": "Tue",
+                "starttime": "0800",
+                "endtime": "2330"
+            },
+            {
+                "name": "TEST3",
+                "day": "Wed",
+                "starttime": "0800",
+                "endtime": "2330"
+            },
+            {
+                "name": "TEST4",
+                "day": "Thu",
+                "starttime": "0800",
+                "endtime": "2330"
+            },
+            {
+                "name": "TEST5",
+                "day": "Fri",
+                "starttime": "0800",
+                "endtime": "2330"
+            },
+            {
+                "name": "TEST6",
+                "day": "Sat",
+                "starttime": "0800",
+                "endtime": "2330"
+            },
+            {
+                "name": "TEST7",
+                "day": "Sun",
+                "starttime": "0800",
+                "endtime": "2330"
+            }
+        ]
     }
 ]

@@ -12,6 +12,11 @@ export default function ManualAttendance() {
     const { course, group, startTime, endTime } = location.state
     const [studentList, setStudentList] = useState([])
 
+    function handleSubmit() {
+        // post to backend here
+        alert('Attendance submitted successfully.')
+    }
+
     useEffect(() => {
         axios
             .get('https://api.jsonbin.io/b/6150147d4a82881d6c558bd4/3')
@@ -81,6 +86,9 @@ export default function ManualAttendance() {
                         ))}
                     </tbody>
                 </Table>
+                <Button variant="primary" size="lg" onClick={handleSubmit}>
+                    Submit Attendance
+                </Button>
             </Container>
         </div>
     )

@@ -2,15 +2,11 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { Card, Button } from 'react-bootstrap/'
-import moment from 'moment'
 import CurrentDateTime from '../components/currentDateTime'
 import TeacherNavbar from '../components/navbarTeacher'
-import TakeAttSelection from '../components/takeAttSelection'
+import ViewAttSelection from '../components/viewAttSelection'
 
-// set moment to english
-moment.locale('en')
-
-export default function TakeAttendance() {
+export default function ViewAttTeacher() {
     const history = useHistory()
 
     // set options
@@ -20,7 +16,7 @@ export default function TakeAttendance() {
     // set selected options
     const [selectedCourse, setCourse] = useState('')
     const [selectedGroup, setGroup] = useState('')
-    const [selectedMode, setMode] = useState('')
+    const [selectedDate, setDate] = useState('')
 
     useEffect(() => {
         axios
@@ -32,29 +28,8 @@ export default function TakeAttendance() {
     // check if all fields selected
     function validateSelections() {
         return (
-            selectedCourse !== '' && selectedGroup !== '' && selectedMode !== ''
+            selectedCourse !== '' && selectedGroup !== '' && selectedDate !== ''
         )
-    }
-
-    function validateTime() {
-        const { day, starttime, endtime } = selectedGroup
-        const now = moment(Date())
-        const today = now.format('ddd')
-
-        // make start time 15 minutes earlier for buffer
-        const groupStartTime = moment(starttime, 'HHmm').subtract(15, 'minutes')
-        const groupEndTime = moment(endtime, 'HHmm')
-
-        // check if day of group is today
-        if (today !== day) {
-            return false
-        }
-
-        // check if current time within time slot
-        if (now.isAfter(groupStartTime) && now.isBefore(groupEndTime)) {
-            return true
-        }
-        return false
     }
 
     function getTimeSlot() {
@@ -65,62 +40,65 @@ export default function TakeAttendance() {
         return str
     }
 
-    function handleTakeAttendance() {
+    function handleViewAttendance() {
         console.log(selectedCourse.name)
         console.log(selectedGroup.name)
-        console.log(selectedMode)
-        if (selectedMode === 'manual' && validateTime()) {
-            history.push({
-                pathname: 'take_attendance/manual',
-                state: {
-                    course: selectedCourse.name,
-                    group: selectedGroup.name,
-                    startTime: selectedGroup.starttime,
-                    endTime: selectedGroup.endtime,
-                },
-            })
-        } else if (selectedMode === 'face' && validateTime()) {
-            // history.push('take_attendance/face')
-        } else {
-            alert(
-                'There are no lessons for the selected course and group currently.'
-            )
-        }
+        console.log(selectedDate)
+        history.push({
+            pathname: 'view_attendance_teacher/class',
+            state: {
+                course: selectedCourse.name,
+                group: selectedGroup.name,
+                startTime: selectedGroup.starttime,
+                endTime: selectedGroup.endtime,
+            },
+        })
     }
 
     return (
         <div>
             <TeacherNavbar />
             <Card className="card">
-                <Card.Header as="h2">Take Attendance</Card.Header>
+                <Card.Header as="h2">View Attendance</Card.Header>
                 <Card.Body as="h3">
                     <CurrentDateTime />
                 </Card.Body>
             </Card>
             <div className="row">
                 <div className="col">
-                    <TakeAttSelection
+                    <ViewAttSelection
                         courses={courses}
                         groups={groups}
                         setGroups={setGroups}
                         setCourse={setCourse}
                         setGroup={setGroup}
-                        setMode={setMode}
+                        setDate={setDate}
                     />
                     <br />
                     <Button
                         variant="primary"
                         size="lg"
                         disabled={!validateSelections()}
-                        onClick={handleTakeAttendance}
+                        onClick={handleViewAttendance}
                     >
-                        Take Attendance
+                        View Attendance
                     </Button>
                 </div>
                 <div className="col">
                     <h4>Course: {selectedCourse.name}</h4>
                     <h4>Group: {selectedGroup.name}</h4>
                     <h4>Timeslot: {getTimeSlot()}</h4>
+                    <h4>
+                        Date:&nbsp;
+                        {selectedDate === ''
+                            ? ''
+                            : selectedDate.toLocaleDateString('en-sg', {
+                                  weekday: 'short',
+                                  day: 'numeric',
+                                  month: 'long',
+                                  year: 'numeric',
+                              })}
+                    </h4>
                 </div>
             </div>
         </div>

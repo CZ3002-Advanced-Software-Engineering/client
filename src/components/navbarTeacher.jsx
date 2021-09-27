@@ -28,7 +28,7 @@ export default function TeacherNavbar() {
                             <Nav.Link href="/take_attendance">
                                 Take Attendance
                             </Nav.Link>
-                            <Nav.Link href="/view_attendance_class">
+                            <Nav.Link href="/view_attendance_teacher">
                                 View Attendance
                             </Nav.Link>
                             <Nav.Link href="/absentees">Absentees</Nav.Link>

@@ -11,6 +11,7 @@ import StudentHome from './pages/studentHome'
 import TeacherHome from './pages/teacherHome'
 import TakeAttendance from './pages/takeAttendance'
 import ManualAttendance from './pages/manualAttendance'
+import ViewAttTeacher from './pages/viewAttTeacher'
 
 export default function App() {
     return (
@@ -29,6 +30,11 @@ export default function App() {
                         exact
                         path="/take_attendance/manual"
                         component={ManualAttendance}
+                    />
+                    <Route
+                        exact
+                        path="/view_attendance_teacher"
+                        component={ViewAttTeacher}
                     />
                 </>
             </Switch>

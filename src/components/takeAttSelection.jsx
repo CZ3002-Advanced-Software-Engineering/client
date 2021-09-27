@@ -1,8 +1,6 @@
 import React from 'react'
 
-/* eslint-disable no-constant-condition */
-
-export default function AttSelection({
+export default function TakeAttSelection({
     courses,
     groups,
     setGroups,
@@ -10,19 +8,27 @@ export default function AttSelection({
     setGroup,
     setMode,
 }) {
+    function resetGroup() {
+        setGroup('')
+    }
+
+    function resetAll() {
+        setCourse('')
+        setGroups([])
+        resetGroup()
+    }
+
     const selectCourse = (e) => {
         const index = Number(e.target.value)
         if (index !== -1) {
-            // set user selected course
             setCourse(courses[index])
-
-            // reset group
-            setGroup('')
 
             // set options for group selection
             setGroups(courses[index].groups)
+
+            resetGroup()
         } else {
-            setCourse('')
+            resetAll()
         }
     }
 
@@ -31,7 +37,7 @@ export default function AttSelection({
         if (index !== -1) {
             setGroup(groups[index])
         } else {
-            setGroup('')
+            resetGroup()
         }
     }
 
