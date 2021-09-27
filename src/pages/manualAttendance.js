@@ -13,7 +13,7 @@ export default function ManualAttendance() {
     const [studentList, setStudentList] = useState([])
 
     function handleSubmit() {
-        // post to backend here
+        // POST to backend here
         alert('Attendance submitted successfully.')
     }
 

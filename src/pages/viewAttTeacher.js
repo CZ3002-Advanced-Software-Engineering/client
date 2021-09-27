@@ -47,6 +47,7 @@ export default function ViewAttTeacher() {
         history.push({
             pathname: 'view_attendance_teacher/class',
             state: {
+                date: selectedDate,
                 course: selectedCourse.name,
                 group: selectedGroup.name,
                 startTime: selectedGroup.starttime,

@@ -7,9 +7,6 @@ import CurrentDateTime from '../components/currentDateTime'
 import TeacherNavbar from '../components/navbarTeacher'
 import TakeAttSelection from '../components/takeAttSelection'
 
-// set moment to english
-moment.locale('en')
-
 export default function TakeAttendance() {
     const history = useHistory()
 
@@ -37,6 +34,9 @@ export default function TakeAttendance() {
     }
 
     function validateTime() {
+        // set moment to english
+        moment.locale('en')
+
         const { day, starttime, endtime } = selectedGroup
         const now = moment(Date())
         const today = now.format('ddd')
