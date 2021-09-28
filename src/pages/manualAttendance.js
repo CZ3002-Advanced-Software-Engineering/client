@@ -13,8 +13,10 @@ export default function ManualAttendance() {
     const [studentList, setStudentList] = useState([])
 
     function handleSubmit() {
-        // POST to backend here
-        alert('Attendance submitted successfully.')
+        if (window.confirm('Submit attendance list?')) {
+            // POST to backend here
+            alert('Attendance submitted successfully.')
+        }
     }
 
     useEffect(() => {

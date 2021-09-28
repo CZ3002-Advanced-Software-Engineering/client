@@ -9,35 +9,22 @@ export default function DisplayClassAtt() {
     const location = useLocation()
     const { date, course, group, startTime, endTime } = location.state
 
-    // for updating
     const [studentList, setStudentList] = useState([])
 
-    // for restoring original list after cancelling changes
-    const [originalList, setOriginalList] = useState([])
-
+    // whether editing of attendance is disabled
     const [editDisabled, setEditDisabled] = useState(true)
-
-    // function handleSubmit() {
-    //     // POST to backend here
-    //     alert('Attendance submitted successfully.')
-    // }
 
     useEffect(() => {
         axios
-            .get('https://api.jsonbin.io/b/6150147d4a82881d6c558bd4/2')
-            .then((response) => {
-                setStudentList(response.data)
-                setOriginalList([...studentList])
-            })
+            .get('https://api.jsonbin.io/b/6150147d4a82881d6c558bd4/3')
+            .then((response) => setStudentList(response.data))
             .then((error) => console.log(error))
-        console.log(studentList)
-        console.log(originalList)
     }, [])
 
     // update attendance status and set/remove check-in time
     const handleChange = (student) => {
-        const now = new Date()
-        const currentTime = now.toLocaleTimeString('en-US', { hour12: true })
+        // const now = new Date()
+        // const currentTime = now.toLocaleTimeString('en-US', { hour12: true })
         const newStudentList = [...studentList]
 
         if (student.attendance === 'present') {
@@ -48,16 +35,22 @@ export default function DisplayClassAtt() {
             newStudentList.find((s) => s.id === student.id).attendance =
                 'present'
             newStudentList.find((s) => s.id === student.id).checkintime =
-                currentTime
+                'Edited'
         }
         setStudentList(newStudentList)
     }
 
+    // for now just refresh page
     const cancelChange = () => {
-        console.log(typeof originalList)
-        setStudentList(originalList)
-        setEditDisabled(true)
-        console.log(originalList)
+        if (window.confirm('Cancel changes?')) window.location.reload(false)
+    }
+
+    function handleUpdate() {
+        if (window.confirm('Are you sure you wish to update?')) {
+            // POST to backend here
+            alert('Attendance updated successfully.')
+            setEditDisabled(false)
+        }
     }
 
     return (
@@ -110,6 +103,7 @@ export default function DisplayClassAtt() {
                     </tbody>
                 </Table>
                 <Button
+                    disabled={!editDisabled}
                     variant="primary"
                     size="lg"
                     onClick={() => setEditDisabled(false)}
@@ -128,7 +122,7 @@ export default function DisplayClassAtt() {
                     disabled={editDisabled}
                     variant="primary"
                     size="lg"
-                    onClick={() => setEditDisabled(false)}
+                    onClick={handleUpdate}
                 >
                     Update
                 </Button>
