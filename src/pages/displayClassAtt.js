@@ -46,7 +46,7 @@ export default function DisplayClassAtt() {
     }
 
     function handleUpdate() {
-        if (window.confirm('Are you sure you wish to update?')) {
+        if (window.confirm('Confirm update?')) {
             // POST to backend here
             alert('Attendance updated successfully.')
             setEditDisabled(false)

@@ -10,8 +10,8 @@ export default function StudentHome() {
         <div>
             <StudentNavbar />
             <Card>
-                <Card.Header as="h2">Profile Status</Card.Header>
-                <SetUpProfileCard hasSetUp={setUpDone} />
+                <Card.Header as="h2">Welcome</Card.Header>
+                {/* <SetUpProfileCard hasSetUp={setUpDone} /> */}
             </Card>
         </div>
     )

@@ -13,6 +13,7 @@ import TakeAttendance from './pages/takeAttendance'
 import ManualAttendance from './pages/manualAttendance'
 import ViewAttTeacher from './pages/viewAttTeacher'
 import DisplayClassAtt from './pages/displayClassAtt'
+import SubmitDoc from './pages/submitDoc'
 
 export default function App() {
     return (
@@ -20,7 +21,14 @@ export default function App() {
             <Switch>
                 <>
                     <Route exact path="/" component={SignIn} />
+                    {/* student routes */}
                     <Route exact path="/student_home" component={StudentHome} />
+                    <Route
+                        exact
+                        path="/submit_documents"
+                        component={SubmitDoc}
+                    />
+                    {/* teacher routes */}
                     <Route exact path="/teacher_home" component={TeacherHome} />
                     <Route
                         exact
