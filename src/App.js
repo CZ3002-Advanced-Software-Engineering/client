@@ -19,38 +19,32 @@ export default function App() {
     return (
         <Router>
             <Switch>
-                <>
-                    <Route exact path="/" component={SignIn} />
-                    {/* student routes */}
-                    <Route exact path="/student_home" component={StudentHome} />
-                    <Route
-                        exact
-                        path="/submit_documents"
-                        component={SubmitDoc}
-                    />
-                    {/* teacher routes */}
-                    <Route exact path="/teacher_home" component={TeacherHome} />
-                    <Route
-                        exact
-                        path="/take_attendance"
-                        component={TakeAttendance}
-                    />
-                    <Route
-                        exact
-                        path="/take_attendance/manual"
-                        component={ManualAttendance}
-                    />
-                    <Route
-                        exact
-                        path="/view_attendance_teacher"
-                        component={ViewAttTeacher}
-                    />
-                    <Route
-                        exact
-                        path="/view_attendance_teacher/class"
-                        component={DisplayClassAtt}
-                    />
-                </>
+                <Route exact path="/" component={SignIn} />
+                {/* student routes */}
+                <Route exact path="/student_home" component={StudentHome} />
+                <Route exact path="/submit_documents" component={SubmitDoc} />
+                {/* teacher routes */}
+                <Route exact path="/teacher_home" component={TeacherHome} />
+                <Route
+                    exact
+                    path="/take_attendance"
+                    component={TakeAttendance}
+                />
+                <Route
+                    exact
+                    path="/take_attendance/manual"
+                    component={ManualAttendance}
+                />
+                <Route
+                    exact
+                    path="/view_attendance_teacher"
+                    component={ViewAttTeacher}
+                />
+                <Route
+                    exact
+                    path="/view_attendance_teacher/class"
+                    component={DisplayClassAtt}
+                />
             </Switch>
         </Router>
     )
