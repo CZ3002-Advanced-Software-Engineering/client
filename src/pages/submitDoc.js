@@ -1,7 +1,6 @@
 import React from 'react'
 import { Card } from 'react-bootstrap/'
 import StudentNavbar from '../components/navbarStudent'
-import FileUpload from '../components/fileUpload'
 
 export default function SubmitDoc() {
     return (
@@ -12,7 +11,9 @@ export default function SubmitDoc() {
                 <Card.Body>
                     <h3>Absenteeism Records</h3>
                 </Card.Body>
-                <FileUpload />
+                <div className="custom-file">
+                    <input type="file" id="inputGroupFile01" />
+                </div>
             </Card>
         </div>
     )
