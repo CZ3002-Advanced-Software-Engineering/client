@@ -14,6 +14,7 @@ import ManualAttendance from './pages/manualAttendance'
 import ViewAttTeacher from './pages/viewAttTeacher'
 import DisplayClassAtt from './pages/displayClassAtt'
 import SubmitDoc from './pages/submitDoc'
+import FacialRecognition from './pages/facialRecognition'
 
 export default function App() {
     return (
@@ -34,6 +35,11 @@ export default function App() {
                     exact
                     path="/take_attendance/manual"
                     component={ManualAttendance}
+                />
+                <Route
+                    exact
+                    path="/take_attendance/face"
+                    component={FacialRecognition}
                 />
                 <Route
                     exact
