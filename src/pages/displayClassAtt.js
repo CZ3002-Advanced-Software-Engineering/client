@@ -3,21 +3,16 @@ import axios from 'axios'
 import { useHistory, useLocation } from 'react-router-dom'
 import { Card, Table, Button, Container, Form } from 'react-bootstrap/'
 import TeacherNavbar from '../components/navbarTeacher'
-import CurrentDateTime from '../components/currentDateTime'
-import '../styles/manualAttendance.css'
 
-export default function ManualAttendance() {
+export default function DisplayClassAtt() {
     // get details from previous page
     const location = useLocation()
-    const { course, group, startTime, endTime } = location.state
+    const { date, course, group, startTime, endTime } = location.state
+
     const [studentList, setStudentList] = useState([])
 
-    function handleSubmit() {
-        if (window.confirm('Submit attendance list?')) {
-            // POST to backend here
-            alert('Attendance submitted successfully.')
-        }
-    }
+    // whether editing of attendance is disabled
+    const [editDisabled, setEditDisabled] = useState(true)
 
     useEffect(() => {
         axios
@@ -28,8 +23,8 @@ export default function ManualAttendance() {
 
     // update attendance status and set/remove check-in time
     const handleChange = (student) => {
-        const now = new Date()
-        const currentTime = now.toLocaleTimeString('en-US', { hour12: true })
+        // const now = new Date()
+        // const currentTime = now.toLocaleTimeString('en-US', { hour12: true })
         const newStudentList = [...studentList]
 
         if (student.attendance === 'present') {
@@ -40,19 +35,37 @@ export default function ManualAttendance() {
             newStudentList.find((s) => s.id === student.id).attendance =
                 'present'
             newStudentList.find((s) => s.id === student.id).checkintime =
-                currentTime
+                'Edited'
         }
         setStudentList(newStudentList)
+    }
+
+    // for now just refresh page
+    const cancelChange = () => {
+        if (window.confirm('Cancel changes?')) window.location.reload(false)
+    }
+
+    function handleUpdate() {
+        if (window.confirm('Confirm update?')) {
+            // POST to backend here
+            alert('Attendance updated successfully.')
+            setEditDisabled(false)
+        }
     }
 
     return (
         <div>
             <TeacherNavbar />
             <Card className="card">
-                <Card.Header as="h2">Manual Attendance</Card.Header>
+                <Card.Header as="h2">View Class Attendance</Card.Header>
                 <Card.Body as="h3">
                     <Card.Text>
-                        <CurrentDateTime />
+                        {date.toLocaleDateString('en-sg', {
+                            weekday: 'long',
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric',
+                        })}
                     </Card.Text>
                     <Card.Text>
                         {course.toUpperCase()}, {group}, {startTime} - {endTime}
@@ -73,10 +86,11 @@ export default function ManualAttendance() {
                         {studentList.map((student) => (
                             <tr key={student.id}>
                                 <td>{student.id}</td>
-                                <td>{student.name}</td>
+                                <td>{student.name.toUpperCase()}</td>
                                 <td>{student.checkintime}</td>
                                 <td>
                                     <Form.Check
+                                        disabled={editDisabled}
                                         type="checkbox"
                                         defaultChecked={
                                             student.attendance === 'present'
@@ -88,8 +102,29 @@ export default function ManualAttendance() {
                         ))}
                     </tbody>
                 </Table>
-                <Button variant="primary" size="lg" onClick={handleSubmit}>
-                    Submit Attendance
+                <Button
+                    disabled={!editDisabled}
+                    variant="primary"
+                    size="lg"
+                    onClick={() => setEditDisabled(false)}
+                >
+                    Edit Attendance
+                </Button>
+                <Button
+                    disabled={editDisabled}
+                    variant="primary"
+                    size="lg"
+                    onClick={cancelChange}
+                >
+                    Cancel
+                </Button>
+                <Button
+                    disabled={editDisabled}
+                    variant="primary"
+                    size="lg"
+                    onClick={handleUpdate}
+                >
+                    Update
                 </Button>
             </Container>
         </div>
