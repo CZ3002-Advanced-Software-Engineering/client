@@ -1,18 +1,26 @@
-import React, { useState, useEffect } from 'react'
-import { Card, Form, Button } from 'react-bootstrap/'
+import React, { useState } from 'react'
+import { Button, Card, Form } from 'react-bootstrap/'
 import '../styles/signin.css'
 import { useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
-import { login, authFetch } from '../auth'
+import { fetchUser } from '../actions/teachers'
 
 export default function SignIn() {
     const history = useHistory()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [domain, setDomain] = useState('Staff')
+    const dispatch = useDispatch()
+    const hello = useSelector((state) => state)
 
     function validateForm() {
         return email.length > 0 && password.length > 0
+    }
+
+    const text = () => {
+        dispatch(fetchUser())
+        console.log(hello)
     }
 
     function handleSubmit(event) {
@@ -47,6 +55,7 @@ export default function SignIn() {
 
     return (
         <div className="Login">
+            <button onClick={text}>HELLO</button>
             <Card bg="light">
                 <Card.Body>
                     <IoMdCheckmarkCircleOutline size="10rem" color="green" />
