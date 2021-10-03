@@ -16,7 +16,7 @@ export default function FileUpload() {
         e.preventDefault()
         const formData = new FormData()
         formData.append('file', file)
-        const url = ''
+        const url = 'http://127.0.0.1:5000/upload_doc'
 
         try {
             const res = await axios.post(url, formData, {
@@ -27,6 +27,7 @@ export default function FileUpload() {
 
             const { fileName, filePath } = res.data
             setUploadedFile({ fileName, filePath })
+            console.log(res)
         } catch (error) {
             if (error.response.status === 500) {
                 console.log('There was a problem with the server.')
@@ -56,7 +57,6 @@ export default function FileUpload() {
                     Upload
                 </Button>
             </Form.Group>
-            )
         </div>
     )
 }
