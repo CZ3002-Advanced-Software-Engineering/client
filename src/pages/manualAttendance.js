@@ -21,7 +21,8 @@ export default function ManualAttendance() {
 
     useEffect(() => {
         axios
-            .get('https://api.jsonbin.io/b/6150147d4a82881d6c558bd4/3')
+            // .get('https://api.jsonbin.io/b/6150147d4a82881d6c558bd4/3')
+            .get(`http://127.0.0.1:5000/ViewAttendance?module=${course}&group=${group}`)
             .then((response) => setStudentList(response.data))
             .then((error) => console.log(error))
     }, [])
