@@ -9,6 +9,14 @@ export default function DisplayClassAtt() {
     const location = useLocation()
     const { date, course, group, startTime, endTime } = location.state
 
+    const dateString = date.toLocaleDateString(
+        'fr-CA', {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric'
+        }
+    )
+
     const [studentList, setStudentList] = useState([])
 
     // whether editing of attendance is disabled
@@ -16,7 +24,8 @@ export default function DisplayClassAtt() {
 
     useEffect(() => {
         axios
-            .get('https://api.jsonbin.io/b/6150147d4a82881d6c558bd4/3')
+            // .get('https://api.jsonbin.io/b/6150147d4a82881d6c558bd4/3')
+            .get(`http://127.0.0.1:5000/view_attendance?course=${course}&group=${group}&date=${dateString}`)
             .then((response) => setStudentList(response.data))
             .then((error) => console.log(error))
     }, [])
@@ -28,13 +37,13 @@ export default function DisplayClassAtt() {
         const newStudentList = [...studentList]
 
         if (student.attendance === 'present') {
-            newStudentList.find((s) => s.id === student.id).attendance =
+            newStudentList.find((s) => s.class_index === student.class_index).attendance =
                 'absent'
-            newStudentList.find((s) => s.id === student.id).checkintime = '-'
+            newStudentList.find((s) => s.class_index === student.class_index).checkintime = '-'
         } else {
-            newStudentList.find((s) => s.id === student.id).attendance =
+            newStudentList.find((s) => s.class_index === student.class_index).attendance =
                 'present'
-            newStudentList.find((s) => s.id === student.id).checkintime =
+            newStudentList.find((s) => s.class_index === student.class_index).checkintime =
                 'Edited'
         }
         setStudentList(newStudentList)
@@ -84,8 +93,8 @@ export default function DisplayClassAtt() {
                     </thead>
                     <tbody>
                         {studentList.map((student) => (
-                            <tr key={student.id}>
-                                <td>{student.id}</td>
+                            <tr key={student.class_index}>
+                                <td>{student.class_index}</td>
                                 <td>{student.name.toUpperCase()}</td>
                                 <td>{student.checkintime}</td>
                                 <td>
