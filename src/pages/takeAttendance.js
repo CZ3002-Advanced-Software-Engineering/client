@@ -21,7 +21,7 @@ export default function TakeAttendance() {
 
     useEffect(() => {
         axios
-            .get('https://api.jsonbin.io/b/6141d16daa02be1d4448ac42/11')
+            .get('https://api.jsonbin.io/b/6141d16daa02be1d4448ac42/12')
             .then((response) => setCourses(response.data))
             .then((error) => console.log(error))
     }, [])
@@ -82,9 +82,18 @@ export default function TakeAttendance() {
         } else if (selectedMode === 'face' && validateTime()) {
             history.push('take_attendance/face')
         } else {
-            alert(
-                'There are no lessons for the selected course and group currently.'
-            )
+            // alert(
+            //     'There are no lessons for the selected course and group currently.'
+            // )
+            history.push({
+                pathname: 'take_attendance/manual',
+                state: {
+                    course: selectedCourse.name,
+                    group: selectedGroup.name,
+                    startTime: selectedGroup.starttime,
+                    endTime: selectedGroup.endtime,
+                },
+            })
         }
     }
 
