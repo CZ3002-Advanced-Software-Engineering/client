@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Card, Form } from 'react-bootstrap/'
 import '../styles/signin.css'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
-import { fetchUser } from '../actions/teachers'
+import { fetchUser, login } from '../actions/teachers'
 
 export default function SignIn() {
     const history = useHistory()
@@ -12,26 +12,40 @@ export default function SignIn() {
     const [password, setPassword] = useState('')
     const [domain, setDomain] = useState('Staff')
     const dispatch = useDispatch()
-    const hello = useSelector((state) => state)
+    const hello = useSelector((state) => state.user)
 
+    const { isAuthenticated, data } = hello
     function validateForm() {
         return email.length > 0 && password.length > 0
     }
 
-    const text = () => {
+    useEffect(() => {
         dispatch(fetchUser())
-        console.log(hello)
-    }
+    }, [])
 
-    function handleSubmit(event) {
-        event.preventDefault()
-        if (domain === 'Staff') {
-            console.log(domain)
-            history.push('/teacher_home')
-        } else if (domain === 'Student') {
-            console.log(domain)
-            history.push('/student_home')
+    useEffect(() => {
+        if (isAuthenticated) {
+            if (data.domain === 'Staff') {
+                history.push('/teacher_home')
+            } else if (data.domain === 'Student') {
+                history.push('/student_home')
+            }
         }
+    }, [isAuthenticated])
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        // if (domain === 'Staff') {
+        //     console.log(domain)
+        //     history.push('/teacher_home')
+        // } else if (domain === 'Student') {
+        //     console.log(domain)
+        //     history.push('/student_home')
+        // }
+
+        dispatch(login(email, password, domain, data))
+
+        // console.log(hello)
         // const opts = {
         //     email,
         //     password,
@@ -55,7 +69,13 @@ export default function SignIn() {
 
     return (
         <div className="Login">
-            <button onClick={text}>HELLO</button>
+            <button
+                onClick={() => {
+                    console.log(hello)
+                }}
+            >
+                hello
+            </button>
             <Card bg="light">
                 <Card.Body>
                     <IoMdCheckmarkCircleOutline size="10rem" color="green" />
