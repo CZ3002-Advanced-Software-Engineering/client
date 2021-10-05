@@ -1,0 +1,18 @@
+[
+    {
+        "attendanceid": "3",
+        "course": "cz3002",
+        "timeslot": "1030-1230",
+        "date": "29/09/21",
+        "documentname": "test.txt",
+        "documenturl": "./tempdata/test.txt"
+    },
+    {
+        "attendanceid": "4",
+        "course": "cz3003",
+        "timeslot": "0830-1030",
+        "date": "29/09/21",
+        "documentname": "test.txt",
+        "documenturl": "./tempdata/test.txt"
+    }
+]

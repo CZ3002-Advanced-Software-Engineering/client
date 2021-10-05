@@ -21,7 +21,8 @@ export default function ManualAttendance() {
 
     useEffect(() => {
         axios
-            .get('https://api.jsonbin.io/b/6150147d4a82881d6c558bd4/3')
+            // .get('https://api.jsonbin.io/b/6150147d4a82881d6c558bd4/3')
+            .get(`http://127.0.0.1:5000/take_attendance/manual?course=${course}&group=${group}`)
             .then((response) => setStudentList(response.data))
             .then((error) => console.log(error))
     }, [])
@@ -33,13 +34,13 @@ export default function ManualAttendance() {
         const newStudentList = [...studentList]
 
         if (student.attendance === 'present') {
-            newStudentList.find((s) => s.id === student.id).attendance =
+            newStudentList.find((s) => s.class_index === student.class_index).attendance =
                 'absent'
-            newStudentList.find((s) => s.id === student.id).checkintime = '-'
+            newStudentList.find((s) => s.class_index === student.class_index).checkintime = '-'
         } else {
-            newStudentList.find((s) => s.id === student.id).attendance =
+            newStudentList.find((s) => s.class_index === student.class_index).attendance =
                 'present'
-            newStudentList.find((s) => s.id === student.id).checkintime =
+            newStudentList.find((s) => s.class_index === student.class_index).checkintime =
                 currentTime
         }
         setStudentList(newStudentList)
@@ -71,8 +72,8 @@ export default function ManualAttendance() {
                     </thead>
                     <tbody>
                         {studentList.map((student) => (
-                            <tr key={student.id}>
-                                <td>{student.id}</td>
+                            <tr key={student.class_index}>
+                                <td>{student.class_index}</td>
                                 <td>{student.name}</td>
                                 <td>{student.checkintime}</td>
                                 <td>

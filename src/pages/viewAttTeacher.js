@@ -20,7 +20,7 @@ export default function ViewAttTeacher() {
 
     useEffect(() => {
         axios
-            .get('https://api.jsonbin.io/b/6141d16daa02be1d4448ac42/11')
+            .get('https://api.jsonbin.io/b/6141d16daa02be1d4448ac42/12')
             .then((response) => setCourses(response.data))
             .then((error) => console.log(error))
     }, [])
