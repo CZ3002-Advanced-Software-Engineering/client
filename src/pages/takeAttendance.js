@@ -80,13 +80,21 @@ export default function TakeAttendance() {
                 },
             })
         } else if (selectedMode === 'face' && validateTime()) {
-            history.push('take_attendance/face')
+            history.push({
+                pathname: 'take_attendance/face',
+                state: {
+                    course: selectedCourse.name,
+                    group: selectedGroup.name,
+                    startTime: selectedGroup.starttime,
+                    endTime: selectedGroup.endtime,
+                },
+            })
         } else {
             // alert(
             //     'There are no lessons for the selected course and group currently.'
             // )
             history.push({
-                pathname: 'take_attendance/manual',
+                pathname: 'take_attendance/face',
                 state: {
                     course: selectedCourse.name,
                     group: selectedGroup.name,

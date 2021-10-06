@@ -1,4 +1,5 @@
 import React, { useRef, useCallback, useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom'
 import { Spinner, Container, Button } from "react-bootstrap";
 import axios from "axios";
 import Webcam from "react-webcam";
@@ -6,6 +7,10 @@ import '../styles/face.css'
 
 export default function FacialRecognition() {
   const webcam = useRef(null);
+
+  const location = useLocation()
+  const { course, group, startTime, endTime } = location.state
+
   const [name, setName] = useState('')
   const [loading, setLoading] = useState(true)
   const [processing, setProcessing] = useState(false)
@@ -17,7 +22,7 @@ export default function FacialRecognition() {
     }
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:5000/encode_images')
+    axios.get(`http://127.0.0.1:5000/take_attendance/face?course=${course}&group=${group}`)
         .then((res) => {
             if (res.status === 200) {
               setLoading(false)
