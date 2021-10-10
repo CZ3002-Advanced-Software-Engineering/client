@@ -19,7 +19,7 @@ import {
  * @param {object} toggle The section that users click on
  * @returns the navbar component to be displayed at the top of the web page.
  */
-const Navbar = ({ toggle }) => {
+const Navbar = ({ toggle, info }) => {
     const [scrollNav, setScrollNav] = useState(false)
     // const { user, handleLogout } = useContext(AuthContext)
     const history = useHistory()
@@ -85,26 +85,16 @@ const Navbar = ({ toggle }) => {
                             <FaBars />
                         </MobileIcon>
                         <NavMenu>
-                            <NavItem>
-                                <NavLinks to="packages" onClick={goToPackages}>
-                                    Packages
-                                </NavLinks>
-                            </NavItem>
-                            <NavItem>
-                                <NavLinks to="parlours" onClick={goToParlours}>
-                                    Parlours
-                                </NavLinks>
-                            </NavItem>
-                            <NavItem>
-                                <NavLinks to="location" onClick={goToMap}>
-                                    Location
-                                </NavLinks>
-                            </NavItem>
-                            <NavItem>
-                                <NavLinks to="information" onClick={goToInfo}>
-                                    Information
-                                </NavLinks>
-                            </NavItem>
+                            {info.map((item) => (
+                                <NavItem key={item.link}>
+                                    <NavLinks
+                                        to={item.link}
+                                        onClick={goToPackages}
+                                    >
+                                        {item.text}
+                                    </NavLinks>
+                                </NavItem>
+                            ))}
                         </NavMenu>
                     </NavbarContainer>
                 </Nav>
