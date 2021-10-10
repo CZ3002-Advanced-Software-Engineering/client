@@ -46,7 +46,7 @@ const Navbar = ({ toggle, info }) => {
      * Scrolls to the section of packages in home page
      */
     const goToPackages = () => {
-        history.push('/')
+        // history.push('/')
         scroll.scrollTo(800)
     }
 
@@ -101,6 +101,11 @@ const Navbar = ({ toggle, info }) => {
             </IconContext.Provider>
         </>
     )
+}
+
+Navbar.defaultProps = {
+    info: [],
+    toggle: false,
 }
 
 export default Navbar

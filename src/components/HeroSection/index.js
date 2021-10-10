@@ -54,7 +54,7 @@ const HeroSection = ({ HeroHeader, HeroPara, getStartedButton, scroll }) => {
                             primary="true"
                             dark="true"
                         >
-                            Login
+                            Get started
                             {hover ? <ArrowForward /> : <ArrowRight />}
                         </Button>
                     )}

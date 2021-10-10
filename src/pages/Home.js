@@ -13,7 +13,7 @@ const Home = () => {
     return (
         <>
             <Sidebar isOpen={isOpen} toggle={toggle} />
-            <Navbar toggle={toggle} info={[]} />
+            <Navbar toggle={toggle} />
             <HeroSection
                 HeroHeader="Hello"
                 HeroPara="hello"

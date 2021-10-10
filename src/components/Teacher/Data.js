@@ -1,4 +1,6 @@
 import img1 from '../../images/image3.svg'
+import img2 from '../../images/facial-recognition.png'
+import img3 from '../../images/attendant-list.png'
 
 // false = black, true = white
 
@@ -36,7 +38,7 @@ export const viewAttendanceDesc = {
     dark: true,
     primary: true,
     darkText: false,
-    button: '/take_attendance',
+    button: '/view_attendance_teacher',
 }
 
 export const viewAbsenteesDesc = {
@@ -55,6 +57,32 @@ export const viewAbsenteesDesc = {
     primary: false,
     darkText: true,
     button: '/take_attendance',
+}
+
+export const takeAttendanceTeacherBox = {
+    id: 'take_attendance',
+    backgroundColor: false,
+    headerColor: true,
+    boxColor: true,
+    boxHeaderColor: false,
+    boxTextColor: false,
+    header: 'Choose the method',
+    boxes: [
+        {
+            header: 'Facial Recognition',
+            text: 'Click here to take attendance by facial recognition',
+            img: img2,
+            alt: 'img2',
+            path: '/facial_recognition',
+        },
+        {
+            header: 'Manual',
+            text: 'Click here to take attendance manually',
+            img: img3,
+            alt: 'img3',
+            path: '/manual_attendance',
+        },
+    ],
 }
 
 export const NavBarInfo = [
