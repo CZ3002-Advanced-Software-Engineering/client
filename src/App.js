@@ -5,6 +5,7 @@ import SignIn from './pages/SignIn'
 import TeacherHome from './pages/TeacherHome'
 import StudentHome from './pages/StudentHome'
 import TakeAttendance from './pages/TakeAttendance'
+import ViewAttendance from './pages/ViewAttendance'
 
 export default function App() {
     return (
@@ -17,6 +18,11 @@ export default function App() {
                     <Route
                         path="/take_attendance"
                         component={TakeAttendance}
+                        exact
+                    />
+                    <Route
+                        path="/view_attendance_teacher"
+                        component={ViewAttendance}
                         exact
                     />
                 </Switch>

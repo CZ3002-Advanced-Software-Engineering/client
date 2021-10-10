@@ -23,7 +23,7 @@ export const takeAttendanceDesc = {
 }
 
 export const viewAttendanceDesc = {
-    id: 'view_attendance',
+    id: 'view_attendance_teacher',
     lightBg: false,
     lightText: true,
     lightTextDesc: true,
@@ -42,7 +42,7 @@ export const viewAttendanceDesc = {
 }
 
 export const viewAbsenteesDesc = {
-    id: 'view_absentees',
+    id: 'absentees',
     lightBg: true,
     lightText: false,
     lightTextDesc: false,
@@ -88,14 +88,14 @@ export const takeAttendanceTeacherBox = {
 export const NavBarInfo = [
     {
         text: 'Take Attendance',
-        link: '/take_attendance',
+        link: 'take_attendance',
     },
     {
         text: 'View Attendance',
-        link: '/view_attendance_teacher',
+        link: 'view_attendance_teacher',
     },
     {
         text: 'View Absentees',
-        link: '/absentees',
+        link: 'absentees',
     },
 ]
