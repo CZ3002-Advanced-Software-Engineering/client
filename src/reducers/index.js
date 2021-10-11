@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import { teacher } from './teachers'
+import { user } from './teachers'
 
 export default combineReducers({
-    user: teacher,
+    user,
 })

@@ -1,50 +1,37 @@
+import axios from 'axios'
 import { USER } from '../constants/actionTypes'
-import data from '../tempdata/auth.json'
 
-export const fetchUser = (username) => (dispatch) => {
-    //    simulate axios fetching error
-    const error = false
+const { REACT_APP_API } = process.env
 
-    dispatch({
-        type: USER.LOAD,
-    })
-
-    if (error) {
-        dispatch({
-            type: USER.LOAD_FAILURE,
-            data: {},
-        })
-    } else {
-        dispatch({
-            type: USER.LOAD_SUCCESS,
-            data,
-            isError: false,
-        })
-    }
-}
-
-export const login = (username, password, domain, data) => async (dispatch) => {
+export const login = (username, password, domain) => async (dispatch) => {
     dispatch({
         type: USER.LOGIN_REQUEST,
-        username,
-        password,
     })
 
-    const user = await data.filter(
-        (user) =>
-            user.username === username &&
-            user.password === password &&
-            user.domain === domain
-    )
+    axios
+        .get(`${REACT_APP_API}/login`, {
+            params: {
+                username,
+                password,
+                domain,
+            },
+        })
+        .then((res) => {
+            dispatch({
+                type: USER.LOGIN_SUCCESS,
+                data: res.data,
+                domain,
+            })
+        })
+        .catch((e) => {
+            dispatch({
+                type: USER.LOGIN_FAILURE,
+            })
+        })
+}
 
-    if (user.length === 0) {
-        dispatch({
-            type: USER.LOGIN_FAILURE,
-        })
-    } else {
-        dispatch({
-            type: USER.LOGIN_SUCCESS,
-            data: user[0],
-        })
-    }
+export const logOut = () => (dispatch) => {
+    dispatch({
+        type: USER.LOG_OUT,
+    })
 }

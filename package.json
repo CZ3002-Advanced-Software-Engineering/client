@@ -5,6 +5,7 @@
     "dependencies": {
         "axios": "^0.21.4",
         "bootstrap": "^5.1.0",
+        "dotenv": "^10.0.0",
         "face-api.js": "^0.22.2",
         "moment": "^2.29.1",
         "moment-timezone": "^0.5.33",
@@ -25,6 +26,7 @@
         "react-token-auth": "^1.1.9",
         "react-webcam": "^6.0.0",
         "redux": "^4.1.1",
+        "redux-persist": "^6.0.0",
         "redux-thunk": "^2.3.0",
         "styled-components": "^5.3.1"
     },
@@ -64,7 +66,8 @@
         "eslint-plugin-prettier": "^3.4.1",
         "eslint-plugin-react": "^7.24.0",
         "eslint-plugin-react-hooks": "^4.2.0",
-        "prettier": "^2.3.2"
+        "prettier": "^2.3.2",
+        "redux-devtools-extension": "^2.13.9"
     },
     "proxy": "http://localhost:5000"
 }

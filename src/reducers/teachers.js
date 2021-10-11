@@ -2,7 +2,7 @@ import { USER } from '../constants/actionTypes'
 import data from '../tempdata/auth.json'
 
 // eslint-disable-next-line import/prefer-default-export
-export const teacher = (state = { isAuthenticated: false }, action) => {
+export const user = (state = { isAuthenticated: false }, action) => {
     switch (action.type) {
         case USER.LOAD:
             return {
@@ -35,6 +35,7 @@ export const teacher = (state = { isAuthenticated: false }, action) => {
                 isFetching: false,
                 isAuthenticated: true,
                 data: action.data,
+                domain: action.domain,
             }
         case USER.LOGIN_FAILURE:
             return {
@@ -42,6 +43,8 @@ export const teacher = (state = { isAuthenticated: false }, action) => {
                 isFetching: false,
                 isAuthenticated: false,
             }
+        case USER.LOG_OUT:
+            return { isAuthenticated: false }
         default:
             return state
     }
