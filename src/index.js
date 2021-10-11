@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { positions, Provider as AlertProvider, transitions } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
 import App from './App'
-import store from './store/store'
+import { store } from './store/store'
 
 const options = {
     position: positions.BOTTOM_CENTER,

@@ -3,15 +3,19 @@ import { useHistory } from 'react-router-dom'
 import { FaBars } from 'react-icons/fa'
 import { IconContext } from 'react-icons/lib'
 import { animateScroll as scroll } from 'react-scroll'
+import { useDispatch, useSelector } from 'react-redux'
 import {
     MobileIcon,
     Nav,
     NavbarContainer,
+    NavBtn,
+    NavBtnLink,
     NavItem,
     NavLinks,
     NavLogo,
     NavMenu,
 } from './NavBarElements'
+import { logOut } from '../../actions/teachers'
 
 /**
  * This component is responsible for the navigation bar.
@@ -21,8 +25,10 @@ import {
  */
 const Navbar = ({ toggle, info }) => {
     const [scrollNav, setScrollNav] = useState(false)
-    // const { user, handleLogout } = useContext(AuthContext)
     const history = useHistory()
+    const dispatch = useDispatch()
+
+    const { isAuthenticated } = useSelector((state) => state.user)
 
     const changeNav = () => {
         if (window.scrollY >= 80) {
@@ -73,6 +79,10 @@ const Navbar = ({ toggle, info }) => {
         scroll.scrollTo(3400)
     }
 
+    const handleLogOut = () => {
+        dispatch(logOut())
+    }
+
     return (
         <>
             <IconContext.Provider value={{ color: '#fff' }}>
@@ -93,6 +103,13 @@ const Navbar = ({ toggle, info }) => {
                                 </NavItem>
                             ))}
                         </NavMenu>
+                        {isAuthenticated && (
+                            <NavBtn>
+                                <NavBtnLink to="/" onClick={handleLogOut}>
+                                    Log out
+                                </NavBtnLink>
+                            </NavBtn>
+                        )}
                     </NavbarContainer>
                 </Nav>
             </IconContext.Provider>
