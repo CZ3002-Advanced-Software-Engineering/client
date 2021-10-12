@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchAttendance } from '../actions/attendance'
 import DynamicTable from '../components/Display/DynamicTable'
+import { fetchAttendance } from '../actions/attendance'
 import { fetchUser } from '../actions/user'
 
-const ViewAttendance = () => {
+const ManualAttendance = () => {
+    const x = 1
     const dispatch = useDispatch()
 
     const { course, index, date } = useSelector(
@@ -30,9 +31,7 @@ const ViewAttendance = () => {
         { path: 'name', name: 'Student' },
         { path: 'checkintime', name: 'Check In Time' },
         { path: 'status', name: 'Status' },
-        { path: 'documents', name: 'Documents' },
     ]
-
     return (
         <>
             <h1> Course Name : {course}</h1>
@@ -43,14 +42,11 @@ const ViewAttendance = () => {
                     id="id"
                     columns={columns}
                     data={students.map((item) => item)}
+                    takeAttendance
                 />
             )}
         </>
     )
 }
 
-ViewAttendance.defaultProps = {
-    students: [],
-}
-
-export default ViewAttendance
+export default ManualAttendance

@@ -15,7 +15,7 @@ import {
     NavLogo,
     NavMenu,
 } from './NavBarElements'
-import { logOut } from '../../actions/teachers'
+import { logOut } from '../../actions/user'
 
 /**
  * This component is responsible for the navigation bar.

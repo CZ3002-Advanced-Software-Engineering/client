@@ -1,5 +1,5 @@
 import React from 'react'
-import * as PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
 import {
     CloseIcon,
     Icon,
@@ -10,45 +10,47 @@ import {
     SidebarWrapper,
     SideBtnWrap,
 } from './SidebarElements'
+import { logOut } from '../../actions/user'
 
 /**
  * This component renders the side bar to show buttons in navbar, when the the page of the website is reduced horizontally
  */
-const Sidebar = ({ isOpen, toggle }) => (
-    <SidebarContainer isOpen={isOpen} onClick={toggle}>
-        <Icon onClick={toggle}>
-            <CloseIcon />
-        </Icon>
-        <SidebarWrapper>
-            <SidebarMenu>
-                <SidebarLink to="packages" onClick={toggle}>
-                    Packages
-                </SidebarLink>
-                <SidebarLink to="parlours" onClick={toggle}>
-                    Parlours
-                </SidebarLink>
-                <SidebarLink to="location" onClick={toggle}>
-                    Location
-                </SidebarLink>
-                <SidebarLink to="information" onClick={toggle}>
-                    Information
-                </SidebarLink>
-            </SidebarMenu>
-            <SideBtnWrap>
-                <SidebarRoute to="/signin">Sign In</SidebarRoute>
-            </SideBtnWrap>
-        </SidebarWrapper>
-    </SidebarContainer>
-)
+const Sidebar = ({ isOpen, toggle, info }) => {
+    const dispatch = useDispatch()
+    const handleLogOut = () => {
+        dispatch(logOut())
+    }
 
-Sidebar.propTypes = {
-    isOpen: PropTypes.bool,
-    toggle: PropTypes.bool,
+    return (
+        <SidebarContainer isOpen={isOpen} onClick={toggle}>
+            <Icon onClick={toggle}>
+                <CloseIcon />
+            </Icon>
+            <SidebarWrapper>
+                <SidebarMenu>
+                    {info.map((item) => (
+                        <SidebarLink
+                            key={item.text}
+                            to={item.link}
+                            onClick={toggle}
+                        >
+                            {item.text}
+                        </SidebarLink>
+                    ))}
+                </SidebarMenu>
+                <SideBtnWrap>
+                    <SidebarRoute to="/" onClick={handleLogOut}>
+                        Log out
+                    </SidebarRoute>
+                </SideBtnWrap>
+            </SidebarWrapper>
+        </SidebarContainer>
+    )
 }
-
 Sidebar.defaultProps = {
     isOpen: false,
     toggle: false,
+    info: [],
 }
 
 export default Sidebar

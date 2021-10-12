@@ -38,7 +38,7 @@ export const viewAttendanceDesc = {
     dark: true,
     primary: true,
     darkText: false,
-    button: '/view_attendance_teacher',
+    button: '/course_selection/view_attendance',
 }
 
 export const viewAbsenteesDesc = {
@@ -56,7 +56,7 @@ export const viewAbsenteesDesc = {
     dark: false,
     primary: false,
     darkText: true,
-    button: '/take_attendance',
+    button: '/course_selection/absentees',
 }
 
 export const takeAttendanceTeacherBox = {

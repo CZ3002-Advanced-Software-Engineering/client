@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { login } from '../../actions/teachers'
+import { useDispatch } from 'react-redux'
+import { login } from '../../actions/user'
 
 const Login = () => {
     const [email, setEmail] = useState('')

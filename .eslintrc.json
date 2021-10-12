@@ -29,7 +29,8 @@
         ],
         "import/no-unresolved": [2, { "caseSensitive": false }],
         "react/jsx-props-no-spreading": "off",
-        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+        "no-underscore-dangle": "off"
 
     }
 }
