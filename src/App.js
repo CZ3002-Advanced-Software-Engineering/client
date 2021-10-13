@@ -14,6 +14,7 @@ import ViewAttendance from './pages/ViewAttendance'
 import CourseSelection from './pages/CourseSelection'
 import ViewAbsentee from './pages/ViewAbsentee'
 import ManualAttendance from './pages/ManualAttendance'
+import FacialRecognition from './pages/Facial Recognition'
 
 export default function App() {
     const { isAuthenticated } = useSelector((state) => state.user)
@@ -57,6 +58,11 @@ export default function App() {
                     <Route
                         path="/manual_attendance"
                         component={ManualAttendance}
+                        exact
+                    />
+                    <Route
+                        path="/facial_recognition"
+                        component={FacialRecognition}
                         exact
                     />
                 </Switch>
