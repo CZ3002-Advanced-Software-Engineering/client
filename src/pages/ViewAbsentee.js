@@ -1,34 +1,31 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAbsentees } from '../actions/absentee'
-import DynamicTable from '../components/Display/DynamicTable'
 import { fetchUser } from '../actions/user'
+import DynamicTable from '../components/Display/DynamicTable'
 
 const ViewAbsentee = () => {
-    const x = 1
     const dispatch = useDispatch()
     const columns = [
+        { path: 'course', name: 'Course' },
+        { path: 'index', name: 'Index' },
         { path: 'name', name: 'Student' },
-        { path: 'checkintime', name: 'Check In Time' },
-        { path: 'status', name: 'Status' },
+        { path: 'date', name: 'Date absent' },
         { path: 'documents', name: 'Documents' },
     ]
-    const { course, index, date } = useSelector(
-        (state) => state.selectedAttendance
-    )
+
+    const { _id } = useSelector((state) => state.user.data)
 
     const { data, isFetched, isFetchedUser } = useSelector(
         (state) => state.absentee
     )
 
     useEffect(() => {
-        dispatch(fetchAbsentees(course, index, date))
+        dispatch(fetchAbsentees(_id))
     }, [])
 
     useEffect(() => {
         if (isFetched) {
-            console.log('hello from absentee page')
-            console.log(data.map((item) => item.student))
             dispatch(fetchUser(data.map((item) => item.student)))
         }
     }, [isFetched])

@@ -15,6 +15,8 @@ export const absentee = (
             return {
                 ...state,
                 isLoading: true,
+                isFetched: false,
+                isFetchedUser: false,
             }
         case ABSENTEE.LOAD_SUCCESS:
             return {
@@ -28,6 +30,12 @@ export const absentee = (
                 ...state,
                 isError: true,
             }
+        case USER.LOAD:
+            return {
+                ...state,
+                isLoading: true,
+                isFetchedUser: false,
+            }
         case USER.LOAD_SUCCESS:
             return {
                 ...state,
@@ -37,10 +45,7 @@ export const absentee = (
                     const test = action.data.find(
                         (item) => item._id.$oid === entry.student
                     )
-                    console.log(test.name)
-                    return test.name
-                        ? { ...entry, name: test.name }
-                        : { ...entry }
+                    return test ? { ...entry, name: test.name } : { ...entry }
                 }),
             }
         case USER.LOAD_FAILURE:
