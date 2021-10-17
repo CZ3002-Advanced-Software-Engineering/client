@@ -12,7 +12,7 @@ import {
 } from './CourseSelectionElements'
 import { fetchCourses } from '../../actions/course'
 import { selectCourse, selectDate, selectIndex } from '../../actions/selected'
-
+import CurrentDateTime  from '../Clock/CurrentDateTime'
 /**
  * Sets the filter according to what the user want
  * User can filter based on course, index, date
@@ -44,6 +44,7 @@ const CourseSelectionFilter = () => {
     return (
         <>
             <div id="searchFilter">
+                <CurrentDateTime/>
                 <CourseSelectionFilterWrapper>
                     <CourseSelectionFilterForm>
                         <CourseSelectionFilterFormGroup>
@@ -88,7 +89,7 @@ const CourseSelectionFilter = () => {
                                             value={item.group}
                                             key={item._id}
                                         >
-                                            {item.group}
+                                            {item.group} | {item.day} | {item.start_time} - {item.end_time}
                                         </option>
                                     ))}
                             </CourseSelectionFilterFormControl>
