@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import TableAttendance from '../components/Display/TableAttendance'
-import { fetchAttendance } from '../actions/attendance'
+import { fetchAttendance, fetchSessionID } from '../actions/attendance'
 import { fetchUser } from '../actions/user'
 
 
@@ -20,38 +20,38 @@ const ManualAttendance = () => {
         (state) => state.selectedAttendance
     )
 
-    const { students, isFetched, isFetchedUser } = useSelector(
+    const { students, isFetched, isFetchedUser, id } = useSelector(
         (state) => state.attendance
     )
 
     useEffect(() => {
-        dispatch(fetchAttendance(course, index, date, students))
+        dispatch(fetchSessionID(course, index))
     }, [])
 
-    useEffect(() => {
-        if (isFetched) {
-            console.log('hello')
-            dispatch(fetchUser(students.map((item) => item.student)))
-        }
-    }, [isFetched])
+    // useEffect(() => {
+    //     if (isFetched) {
+    //         console.log('hello')
+    //         dispatch(fetchUser(students.map((item) => item.student)))
+    //     }
+    // }, [isFetched])
 
-    useEffect(() => {
-        axios
-            .get(`${REACT_APP_API}/take_attendance/manual`, {
-                params: {
-                    course,
-                    group: index
-                }
-            })
-            .then((res) => {
-                // console.log('response from /take_attendance/manual')
-                // console.log(res.data)
-                setAttRecord(res.data)
-            })
-            .then(() => {
-                setMyBool(true)
-            })
-    }, [isFetchedUser])
+    // useEffect(() => {
+    //     axios
+    //         .get(`${REACT_APP_API}/take_attendance/manual`, {
+    //             params: {
+    //                 course,
+    //                 group: index
+    //             }
+    //         })
+    //         .then((res) => {
+    //             // console.log('response from /take_attendance/manual')
+    //             // console.log(res.data)
+    //             setAttRecord(res.data)
+    //         })
+    //         .then(() => {
+    //             setMyBool(true)
+    //         })
+    // }, [isFetchedUser])
     // console.log('current attendance record')
     // console.log(attRecord)
     // console.log(students)
@@ -67,13 +67,13 @@ const ManualAttendance = () => {
             <h1> Course Name : {course}</h1>
             <h1> Index Name : {index}</h1>
             <h1> Date : {date}</h1>
-            {myBool && (
                 <TableAttendance
                     passattrecord = {attRecord}
+                    students = {students}
+                    session = {id}
                     course = {course}
                     group = {index}
                 />
-            )}
         </>
     )
 }

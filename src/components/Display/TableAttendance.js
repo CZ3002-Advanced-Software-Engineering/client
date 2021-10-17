@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FormControl } from 'react-bootstrap'
 
 const tableSyle = {
@@ -30,15 +30,22 @@ const tdStyle = {
 
 
 
-const TableAttendance = ({ passattrecord, course, group }) => {
+const TableAttendance = ({ passattrecord, students, session, course, group }) => {
     const { REACT_APP_API } = process.env
-    console.log('pass attendance record here')
+    // const [tableData, setTableData] = useState([])
+    // console.log('pass attendance record here')
+    // console.log(passattrecord)
+    // const studentAttendance = passattrecord.students
+    // console.log('this is studentAttendance')
     console.log(passattrecord)
-    const studentAttendance = passattrecord.students
-    console.log('this is studentAttendance')
-    console.log(studentAttendance)
+    console.log(students)
+    console.log('session id', session)
     console.log('group', group)
     console.log('course', course)
+
+    const onSubmit = () => {
+        console.log('data submitted')
+    }
 
     // axios
     //     .get(`${REACT_APP_API}/get_data/student=615abd43789fb41cf8fd3269`, {
@@ -49,15 +56,15 @@ const TableAttendance = ({ passattrecord, course, group }) => {
     //     })
 
     // eslint-disable-next-line array-callback-return
-    studentAttendance.map((item) => {
-        console.log(item)
-        // console.log(item.student)
-        axios
-            .get(`${REACT_APP_API}/get_data/student=${item.student}`)
-            .then((res) => {
-                console.log(res.data.name)
-            })
-    })
+    // studentAttendance.map((item) => {
+    //     console.log(item)
+    //     // console.log(item.student)
+    //     axios
+    //         .get(`${REACT_APP_API}/get_data/student=${item.student}`)
+    //         .then((res) => {
+    //             console.log(res.data.name)
+    //         })
+    // })
     
     // console.log(studentAttendance.length)
     // eslint-disable-next-line no-plusplus
@@ -76,8 +83,36 @@ const TableAttendance = ({ passattrecord, course, group }) => {
     // console.log('back')
     
     return(
+        <>
         <h1>table here</h1>
-        
+        <form onSubmit={onSubmit}>
+        <table style={tableSyle}>
+            <tbody>
+                <tr>
+                    <th style={thStyle}>Name</th>
+                    <th style={thStyle}>Check in time</th>
+                    <th style={thStyle}>Status</th>
+                    <th style={thStyle}>Mark attendance here</th>
+                </tr>
+                {students.map((student, index) => (
+                    <tr key={student}>
+                        <td style={tdStyle}>{student.name}</td>
+                        <td style={tdStyle}>{student.checkintime}</td>
+                        <td style={tdStyle}>{student.status}</td>
+                        <td style={tdStyle}>
+                            <select name="status" id="status">
+                                <option value="pending">pending</option>
+                                <option value="present">present</option>
+                                <option value="absent">absent</option>
+                            </select>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+        </form>
+        <button type='submit'>Submit</button>
+        </>
     )
 }
 
