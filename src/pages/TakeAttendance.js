@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-boolean-value */
 import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import HeroSection from '../components/HeroSection'
@@ -20,7 +21,7 @@ const TakeAttendance = () => {
                 HeroHeader="Take Attendance"
                 HeroPara="Please choose the method of taking attendance"
             />
-            <CourseSelectionFilter />
+            <CourseSelectionFilter mydate={true}/>
             <InfoCards {...takeAttendanceTeacherBox} />
         </>
     )

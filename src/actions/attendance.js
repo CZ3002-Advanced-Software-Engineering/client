@@ -69,6 +69,10 @@ export const fetchSessionID = (course, index) => (dispatch) => {
 }
 
 export const submitAttendance = (attendanceId, students) => (dispatch) => {
+    console.log('students being passed in')
+    console.log(students)
+    console.log('attendace id passed in')
+    console.log(attendanceId)
     dispatch({
         type: ATTENDANCE.SUBMIT_ATTENDANCE,
     })
@@ -85,6 +89,11 @@ export const submitAttendance = (attendanceId, students) => (dispatch) => {
                 type: ATTENDANCE.SUBMIT_ATTENDANCE_SUCCESS,
                 data: res.data,
             })
+        })
+        .then(() => {
+            const { students } = store.getState().attendance
+            console.log(students)
+            dispatch(fetchUser(students.map((item) => item.student)))
         })
         .catch((e) => {
             dispatch({ type: ATTENDANCE.SUBMIT_ATTENDANCE_ERROR })

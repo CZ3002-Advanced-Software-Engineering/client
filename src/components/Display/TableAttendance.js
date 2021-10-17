@@ -89,6 +89,8 @@ const TableAttendance = ({
 
     const handleSubmit = () => {
         dispatch(submitAttendance(attendanceId, students))
+        // eslint-disable-next-line no-alert
+        alert('Successfully submitted attendance')
     }
 
     return (

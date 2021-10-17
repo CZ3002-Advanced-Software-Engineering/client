@@ -18,9 +18,10 @@ import CurrentDateTime  from '../Clock/CurrentDateTime'
  * User can filter based on course, index, date
  * @returns CourseSelectionFilter component
  */
-const CourseSelectionFilter = () => {
+const CourseSelectionFilter = ({mydate}) => {
     // const [course, setCourse] = useState('')
     // const [index, setIndex] = useState('')
+    const mybool = mydate
     const dispatch = useDispatch()
 
     const { domain } = useSelector((state) => state.user)
@@ -92,7 +93,7 @@ const CourseSelectionFilter = () => {
                                         </option>
                                     ))}
                             </CourseSelectionFilterFormControl>
-                            <DayPickerInput
+                            <DayPickerInput style = {{display : mybool ? 'none': 'block'}}
                                 inputProps={{ readOnly: true }}
                                 format="LL"
                                 formatDate={formatDate}
