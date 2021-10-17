@@ -2,16 +2,14 @@ import axios from 'axios'
 import { ABSENTEE } from '../constants/actionTypes'
 
 // eslint-disable-next-line import/prefer-default-export
-export const fetchAbsentees = (course, index, date) => (dispatch) => {
+export const fetchAbsentees = (teacher) => (dispatch) => {
     dispatch({
         type: ABSENTEE.LOAD,
     })
     axios
         .get(`${process.env.REACT_APP_API}/view_absentees`, {
             params: {
-                course,
-                group: index,
-                date,
+                teacher_oid: teacher,
             },
         })
         .then((res) => {

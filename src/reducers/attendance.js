@@ -6,6 +6,7 @@ export const attendance = (
         isLoading: false,
         isFetched: false,
         isFetchedUser: false,
+        isError: false,
         students: [],
     },
     action
@@ -15,6 +16,7 @@ export const attendance = (
             return {
                 ...state,
                 isLoading: true,
+                isFetchedUser: false,
             }
         case ATTENDANCE.FETCHED_ATTENDANCE:
             return {
@@ -36,6 +38,7 @@ export const attendance = (
             return {
                 ...state,
                 isLoading: true,
+                isFetchedUser: false,
             }
         case USER.LOAD_SUCCESS:
             return {
@@ -46,6 +49,7 @@ export const attendance = (
                     const test = action.data.find(
                         (item) => item._id.$oid === entry.student
                     )
+                    console.log(test)
                     return test ? { ...entry, name: test.name } : { ...entry }
                 }),
             }

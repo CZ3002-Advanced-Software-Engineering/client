@@ -46,7 +46,7 @@ export default function App() {
                         exact
                     />
                     <Route
-                        path="/course_selection/view_absentees"
+                        path="/view_absentees"
                         component={ViewAbsentee}
                         exact
                     />

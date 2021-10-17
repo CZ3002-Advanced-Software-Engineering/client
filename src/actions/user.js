@@ -47,14 +47,16 @@ export const fetchUser = (ids) => (dispatch) => {
             params: { collection: 'student', id: JSON.stringify(ids) },
         })
         .then((res) => {
+            console.log(res.data)
             dispatch({
                 type: USER.LOAD_SUCCESS,
                 data: res.data,
             })
         })
-        .catch(() => {
+        .catch((e) => {
             dispatch({
                 type: USER.LOAD_FAILURE,
             })
+            console.error(e)
         })
 }
