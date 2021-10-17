@@ -7,6 +7,7 @@ export const attendance = (
         isFetched: false,
         isFetchedUser: false,
         isError: false,
+        isSubmitted: false,
         students: [],
     },
     action
@@ -30,6 +31,35 @@ export const attendance = (
                 teacher: action.data.teacher,
             }
         case ATTENDANCE.FETCH_ATTENDANCE_ERROR:
+            return {
+                ...state,
+                isError: true,
+            }
+        case ATTENDANCE.SELECTED_STATUS:
+            return {
+                ...state,
+                students: state.students.map((student) =>
+                    student.student === action.id
+                        ? { ...student, status: action.status }
+                        : student
+                ),
+            }
+        case ATTENDANCE.SUBMIT_ATTENDANCE:
+            return {
+                ...state,
+                isLoading: true,
+                isSubmitted: false,
+            }
+        case ATTENDANCE.SUBMIT_ATTENDANCE_SUCCESS:
+            return {
+                ...state,
+                id: action.data._id,
+                date: action.data.date,
+                index: action.data.index,
+                students: action.data.students,
+                teacher: action.data.teacher,
+            }
+        case ATTENDANCE.SUBMIT_ATTENDANCE_ERROR:
             return {
                 ...state,
                 isError: true,
@@ -63,6 +93,7 @@ export const attendance = (
                 isFetched: false,
                 isFetchedUser: false,
                 isLoading: false,
+                isSubmitted: false,
                 students: [],
             }
 
