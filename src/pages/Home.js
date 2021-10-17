@@ -22,7 +22,6 @@ const Home = () => {
 
     const toggle = () => {
         setIsOpen(!isOpen)
-        console.log(isOpen)
     }
     return (
         <>
@@ -54,7 +53,7 @@ const Home = () => {
                     <Navbar info={NavBarInfoStudent} toggle={toggle} />
                     <HeroSection
                         HeroHeader="Welcome"
-                        HeroPara="name pass here"
+                        HeroPara={data.name}
                         getStartedButton="faff"
                     />
                     <InfoSection {...viewAttendanceDescStudent} />

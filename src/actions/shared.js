@@ -19,5 +19,5 @@ export const fetchDataByGroupIds =
                     data: res.data,
                 })
             })
-            .catch((e) => console.log(e))
+            .catch((e) => console.error(e))
     }

@@ -23,23 +23,22 @@ const CourseSelectionFilter = () => {
     // const [index, setIndex] = useState('')
     const dispatch = useDispatch()
 
+    const { domain } = useSelector((state) => state.user)
     // eslint-disable-next-line camelcase
-    const { indexes_taught } = useSelector((state) => state.user.data)
+    const indexesTaken =
+        domain === 'teacher'
+            ? useSelector((state) => state.user.data.indexes_taught)
+            : useSelector((state) => state.user.data.indexes_taken)
     const { courses, isFetched, indexes } = useSelector((state) => state.course)
     const { course, index, date } = useSelector(
         (state) => state.selectedAttendance
     )
 
     useEffect(() => {
-        dispatch(fetchCourses(indexes_taught))
+        dispatch(fetchCourses(indexesTaken))
     }, [])
 
     // TODO: remmeber to delete, testing purposes
-
-    useEffect(() => {
-        console.log(courses)
-        console.log(index)
-    }, [course, index])
 
     return (
         <>

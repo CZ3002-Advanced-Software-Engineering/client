@@ -22,7 +22,6 @@ const ManualAttendance = () => {
 
     useEffect(() => {
         if (isFetched) {
-            console.log('hello')
             dispatch(fetchUser(students.map((item) => item.student)))
         }
     }, [isFetched])

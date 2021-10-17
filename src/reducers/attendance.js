@@ -49,7 +49,6 @@ export const attendance = (
                     const test = action.data.find(
                         (item) => item._id.$oid === entry.student
                     )
-                    console.log(test)
                     return test ? { ...entry, name: test.name } : { ...entry }
                 }),
             }

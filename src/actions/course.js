@@ -21,7 +21,7 @@ export const fetchCourses = (indexes) => async (dispatch) => {
             })
         })
         .catch((e) => {
-            console.log(e)
+            console.error(e)
             dispatch({
                 type: COURSES.LOAD_FAILURE,
             })
