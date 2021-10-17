@@ -41,13 +41,11 @@ export const fetchUser = (ids) => (dispatch) => {
         type: USER.LOAD,
     })
 
-    console.log(ids)
     axios
         .get(`${REACT_APP_API}/get_all_items`, {
             params: { collection: 'student', id: JSON.stringify(ids) },
         })
         .then((res) => {
-            console.log(res.data)
             dispatch({
                 type: USER.LOAD_SUCCESS,
                 data: res.data,

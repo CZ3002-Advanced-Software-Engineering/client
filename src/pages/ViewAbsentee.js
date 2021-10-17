@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchAbsentees } from '../actions/absentee'
-import { fetchUser } from '../actions/user'
+import { fetchAbsentees, fetchStudentAbsentee } from '../actions/absentee'
 import DynamicTable from '../components/Display/DynamicTable'
 
 const ViewAbsentee = () => {
@@ -16,19 +15,17 @@ const ViewAbsentee = () => {
 
     const { _id } = useSelector((state) => state.user.data)
 
-    const { data, isFetched, isFetchedUser } = useSelector(
-        (state) => state.absentee
-    )
+    const { domain } = useSelector((state) => state.user)
+
+    const { data, isFetchedUser } = useSelector((state) => state.absentee)
 
     useEffect(() => {
-        dispatch(fetchAbsentees(_id))
-    }, [])
-
-    useEffect(() => {
-        if (isFetched) {
-            dispatch(fetchUser(data.map((item) => item.student)))
+        if (domain === 'teacher') {
+            dispatch(fetchAbsentees(_id))
+        } else if (domain === 'student') {
+            dispatch(fetchStudentAbsentee(_id))
         }
-    }, [isFetched])
+    }, [])
 
     const handleClick = () => {
         console.log(data)

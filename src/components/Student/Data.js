@@ -17,7 +17,7 @@ export const viewAttendanceDesc = {
     dark: false,
     primary: false,
     darkText: true,
-    button: '/view_attendance_student',
+    button: '/course_selection/view_attendance',
 }
 
 export const submitDocumentsDesc = {
@@ -35,7 +35,7 @@ export const submitDocumentsDesc = {
     dark: true,
     primary: true,
     darkText: false,
-    button: '/view_absent',
+    button: '/view_absentees',
 }
 
 export const NavBarInfo = [

@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { ATTENDANCE } from '../constants/actionTypes'
-import { store } from '../store/store'
 import { fetchUser } from './user'
-
+import { store } from '../store/store'
 
 const { REACT_APP_API } = process.env
 
@@ -25,6 +24,10 @@ export const fetchAttendance = (course, index, date) => (dispatch) => {
                 type: ATTENDANCE.FETCHED_ATTENDANCE,
                 data: res.data,
             })
+        })
+        .then(() => {
+            const { students } = store.getState().attendance
+            dispatch(fetchUser(students.map((item) => item.student)))
         })
         .catch(() => {
             dispatch({

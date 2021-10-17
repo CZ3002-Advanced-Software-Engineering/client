@@ -1,5 +1,5 @@
-import React, { useRef, useCallback, useState, useEffect } from 'react'
-import { Spinner, Container, Button } from 'react-bootstrap'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { Button, Container, Spinner } from 'react-bootstrap'
 import axios from 'axios'
 import Webcam from 'react-webcam'
 // import '../styles/face.css'
@@ -29,11 +29,10 @@ export default function FacialRecognition() {
             .then((res) => {
                 if (res.status === 200) {
                     setLoading(false)
-                    console.log(res.data)
                 }
             })
             .catch((error) => {
-                console.log(error.response)
+                console.error(error.response)
             })
     }, [])
 

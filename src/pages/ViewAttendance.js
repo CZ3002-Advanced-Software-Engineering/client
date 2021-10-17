@@ -2,10 +2,12 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAttendance } from '../actions/attendance'
 import DynamicTable from '../components/Display/DynamicTable'
-import { fetchUser } from '../actions/user'
 
 const ViewAttendance = () => {
     const dispatch = useDispatch()
+
+    const { _id } = useSelector((state) => state.user.data)
+    const { domain } = useSelector((state) => state.user)
 
     const { course, index, date } = useSelector(
         (state) => state.selectedAttendance
@@ -18,13 +20,6 @@ const ViewAttendance = () => {
     useEffect(() => {
         dispatch(fetchAttendance(course, index, date, students))
     }, [])
-
-    useEffect(() => {
-        if (isFetched) {
-            console.log('hello')
-            dispatch(fetchUser(students.map((item) => item.student)))
-        }
-    }, [isFetched])
 
     const columns = [
         { path: 'name', name: 'Student' },
@@ -42,7 +37,13 @@ const ViewAttendance = () => {
                 <DynamicTable
                     id="id"
                     columns={columns}
-                    data={students.map((item) => item)}
+                    data={
+                        domain === 'teacher'
+                            ? students
+                            : students.filter(
+                                  (student) => student.student === _id
+                              )
+                    }
                 />
             )}
         </>
