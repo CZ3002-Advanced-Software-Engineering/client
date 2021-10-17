@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
 import TableAttendance from '../components/Display/TableAttendance'
-import { fetchAttendance, fetchSessionID } from '../actions/attendance'
-import { fetchUser } from '../actions/user'
-
+import { fetchSessionID } from '../actions/attendance'
 
 const { REACT_APP_API } = process.env
 
@@ -12,9 +9,6 @@ const ManualAttendance = () => {
     const x = 1
     const dispatch = useDispatch()
     const [myBool, setMyBool] = useState(false)
-
-    const [attRecord, setAttRecord] = useState({})
-
 
     const { course, index, date } = useSelector(
         (state) => state.selectedAttendance
@@ -67,13 +61,13 @@ const ManualAttendance = () => {
             <h1> Course Name : {course}</h1>
             <h1> Index Name : {index}</h1>
             <h1> Date : {date}</h1>
-                <TableAttendance
-                    passattrecord = {attRecord}
-                    students = {students}
-                    session = {id}
-                    course = {course}
-                    group = {index}
-                />
+            <TableAttendance
+                attendanceId={id}
+                students={students}
+                session={id}
+                course={course}
+                group={index}
+            />
         </>
     )
 }
