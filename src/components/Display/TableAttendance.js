@@ -134,7 +134,8 @@ const TableAttendance = ({
                     </tbody>
                 </table>
             </form>
-            <button type="submit" onClick={handleSubmit}>
+            <button type="submit" onClick={handleSubmit} style={{'background-color':'#069459', 'color':'black', 'fontWeight':'bold', display: 'flex', 
+            alignItems : 'center', justifyContent: 'center', 'margin-top': 20, 'margin-left': '33%', 'width' : '33%', }}>
                 Submit
             </button>
         </>
