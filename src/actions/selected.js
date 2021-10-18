@@ -27,11 +27,12 @@ export const viewAttendance = (course, index, date) => (dispatch) => {
     })
 }
 
-export const selectStatus = (status, id) => (dispatch) => {
+export const selectStatus = (status, id, time) => (dispatch) => {
     dispatch({
         type: ATTENDANCE.SELECTED_STATUS,
         status,
         id,
+        time,
     })
 }
 

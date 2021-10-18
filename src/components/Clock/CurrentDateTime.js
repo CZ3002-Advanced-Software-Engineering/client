@@ -7,7 +7,7 @@ const CurrentDateTime = () => {
     return (
         <Clock 
             locale="en-sg"
-            format="dddd, MMMM, yyyy, hh:mm:ss A"
+            format="dddd, MMMM, D, yyyy, hh:mm:ss A"
             ticking
             timezone="Asia/Singapore" 
             style = {{position: 'relative', top:'20px', alignItems: 'center', display: 'flex', justifyContent: 'center'}}           

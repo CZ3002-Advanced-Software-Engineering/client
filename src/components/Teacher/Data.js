@@ -1,6 +1,7 @@
 import img1 from '../../images/image3.svg'
 import img2 from '../../images/facial-recognition.png'
 import img3 from '../../images/attendant-list.png'
+import img4 from '../../images/gear2.svg'
 
 // false = black, true = white
 
@@ -81,6 +82,13 @@ export const takeAttendanceTeacherBox = {
             img: img3,
             alt: 'img3',
             path: '/manual_attendance',
+        },
+        {
+            header: 'Edit',
+            text: 'Click here to edit attendance manually',
+            img: img4,
+            alt: 'img4',
+            path: '/edit_attendance',
         },
     ],
 }
