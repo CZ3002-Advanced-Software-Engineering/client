@@ -50,8 +50,6 @@ export const NormalButton = styled.button`
     padding: ${({ big }) => (big ? '14px 48px' : '12px 30px')};
     color: black;
     font-size: ${({ fontBig }) => (fontBig ? '20px' : '16px')};
-    outline: none;
-    border: none;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -64,6 +62,8 @@ export const NormalButton = styled.button`
 `
 
 export const NormalButtonWrapper = styled.div`
-    margin-top: 28px;
-    padding-left: 40px;
+    //margin-top: 28px;
+    display: flex;
+    justify-content: space-evenly;
+    //align-items: center;
 `

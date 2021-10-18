@@ -11,14 +11,20 @@ import {
     CourseSelectionFilterWrapper,
 } from './CourseSelectionElements'
 import { fetchCourses } from '../../actions/course'
-import { selectCourse, selectDate, selectIndex } from '../../actions/selected'
-import CurrentDateTime  from '../Clock/CurrentDateTime'
+import {
+    resetSelected,
+    selectCourse,
+    selectDate,
+    selectIndex,
+} from '../../actions/selected'
+import CurrentDateTime from '../Clock/CurrentDateTime'
+
 /**
  * Sets the filter according to what the user want
  * User can filter based on course, index, date
  * @returns CourseSelectionFilter component
  */
-const CourseSelectionFilter = ({mydate}) => {
+const CourseSelectionFilter = ({ mydate }) => {
     // const [course, setCourse] = useState('')
     // const [index, setIndex] = useState('')
     const mybool = mydate
@@ -36,15 +42,20 @@ const CourseSelectionFilter = ({mydate}) => {
     )
 
     useEffect(() => {
+        dispatch(resetSelected())
         dispatch(fetchCourses(indexesTaken))
     }, [])
 
-    // TODO: remmeber to delete, testing purposes
+    const disable = (day) =>
+        indexes.find((item) => item.group === index).day !==
+        day.toLocaleDateString('en-US', {
+            weekday: 'short',
+        })
 
     return (
         <>
             <div id="searchFilter">
-                <CurrentDateTime/>
+                <CurrentDateTime />
                 <CourseSelectionFilterWrapper>
                     <CourseSelectionFilterForm>
                         <CourseSelectionFilterFormGroup>
@@ -84,32 +95,47 @@ const CourseSelectionFilter = ({mydate}) => {
                                     Choose here
                                 </option>
                                 {isFetched &&
-                                    indexes.map((item) => (
-                                        <option
-                                            value={item.group}
-                                            key={item._id}
-                                        >
-                                            {item.group} | {item.day} | {item.start_time} - {item.end_time}
-                                        </option>
-                                    ))}
+                                    indexes
+                                        .filter(
+                                            (item) => item.course === course
+                                        )
+                                        .map((item) => (
+                                            <option
+                                                value={item.group}
+                                                key={item._id}
+                                            >
+                                                {item.group} | {item.day} |{' '}
+                                                {item.start_time} -{' '}
+                                                {item.end_time}
+                                            </option>
+                                        ))}
                             </CourseSelectionFilterFormControl>
-                            <DayPickerInput style = {{display : mybool ? 'none': 'block'}}
+                            <DayPickerInput
+                                style={{ display: mybool ? 'none' : 'block' }}
                                 inputProps={{ readOnly: true }}
                                 format="LL"
+                                clickUnselectsDay
                                 formatDate={formatDate}
                                 parseDate={parseDate}
                                 placeholder="Select Date"
-                                dayPickerProps={{}}
+                                dayPickerProps={{
+                                    disabledDays: disable,
+                                }}
                                 onDayChange={(day) => {
-                                    dispatch(
-                                        selectDate(
-                                            day.toLocaleDateString('fr-CA', {
-                                                year: 'numeric',
-                                                month: 'numeric',
-                                                day: 'numeric',
-                                            })
+                                    if (day) {
+                                        dispatch(
+                                            selectDate(
+                                                day.toLocaleDateString(
+                                                    'fr-CA',
+                                                    {
+                                                        year: 'numeric',
+                                                        month: 'numeric',
+                                                        day: 'numeric',
+                                                    }
+                                                )
+                                            )
                                         )
-                                    )
+                                    }
                                 }}
                             />
                         </CourseSelectionFilterFormGroup>

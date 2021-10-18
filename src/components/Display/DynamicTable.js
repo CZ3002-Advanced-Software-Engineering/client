@@ -1,4 +1,6 @@
 import React from 'react'
+import axios from 'axios'
+import { NormalButton, NormalButtonWrapper } from '../ButtonElements'
 
 const tableSyle = {
     border: '1px solid #1AC57F',
@@ -26,31 +28,71 @@ const tdStyle = {
     width: '15rem',
 }
 
-const DynamicTable = ({ id, columns, data, takeAttendance }) => (
-    <div>
-        {takeAttendance && <h1>hello</h1>}
-        <table style={tableSyle}>
-            <tbody>
-                <tr>
-                    {columns.map(({ path, name }) => (
-                        <th style={thStyle} key={path}>
-                            {name}
-                        </th>
-                    ))}
-                </tr>
-                {data.map((rowData) => (
-                    <tr key={rowData[id]}>
-                        {columns.map(({ path }) => (
-                            <td style={tdStyle} key={path}>
-                                {rowData[path]}
-                            </td>
+const DynamicTable = ({ id, columns, data, takeAttendance }) => {
+    const handleDownload = (fileId) => {
+        console.log(fileId)
+        axios
+            .get(`${process.env.REACT_APP_API}/download/${fileId}`)
+            .then((res) => console.log(res.data))
+    }
+
+    const handleUpload = () => {
+        console.log('i am in upload')
+    }
+    return (
+        <div>
+            {takeAttendance && <h1>hello</h1>}
+            <table style={tableSyle}>
+                <tbody>
+                    <tr>
+                        {columns.map(({ path, name }) => (
+                            <th style={thStyle} key={path}>
+                                {name}
+                            </th>
                         ))}
                     </tr>
-                ))}
-            </tbody>
-        </table>
-    </div>
-)
+                    {data.map((rowData) => (
+                        <tr key={rowData[id]}>
+                            {columns.map(({ path }) => (
+                                <td style={tdStyle} key={path}>
+                                    {/* eslint-disable-next-line no-nested-ternary */}
+                                    {path === 'documents' ? (
+                                        rowData[path] ? (
+                                            <NormalButtonWrapper>
+                                                <NormalButton
+                                                    onClick={() =>
+                                                        handleDownload(
+                                                            rowData[path]
+                                                        )
+                                                    }
+                                                >
+                                                    Download
+                                                </NormalButton>
+                                                <NormalButton>
+                                                    Upload
+                                                </NormalButton>
+                                            </NormalButtonWrapper>
+                                        ) : (
+                                            <NormalButtonWrapper>
+                                                <NormalButton
+                                                    onClick={handleUpload}
+                                                >
+                                                    Upload
+                                                </NormalButton>
+                                            </NormalButtonWrapper>
+                                        )
+                                    ) : (
+                                        rowData[path]
+                                    )}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    )
+}
 
 DynamicTable.defaultProps = {
     id: 'id',

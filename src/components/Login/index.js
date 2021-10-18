@@ -16,7 +16,7 @@ const Login = () => {
         <>
             <section className="login">
                 <div className="loginContainer">
-                    <label>Email</label>
+                    <label>User</label>
                     <input
                         type="text"
                         required
