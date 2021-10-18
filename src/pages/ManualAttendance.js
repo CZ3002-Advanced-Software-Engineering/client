@@ -1,49 +1,73 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import DynamicTable from '../components/Display/DynamicTable'
-import { fetchAttendance } from '../actions/attendance'
-import { fetchUser } from '../actions/user'
+import TableAttendance from '../components/Display/TableAttendance'
+import { fetchSessionID } from '../actions/attendance'
+
+const { REACT_APP_API } = process.env
 
 const ManualAttendance = () => {
     const x = 1
     const dispatch = useDispatch()
+    const [myBool, setMyBool] = useState(false)
 
     const { course, index, date } = useSelector(
         (state) => state.selectedAttendance
     )
 
-    const { students, isFetched, isFetchedUser } = useSelector(
+    const { students, isFetched, isFetchedUser, id } = useSelector(
         (state) => state.attendance
     )
 
     useEffect(() => {
-        dispatch(fetchAttendance(course, index, date, students))
+        dispatch(fetchSessionID(course, index))
     }, [])
 
-    useEffect(() => {
-        if (isFetched) {
-            dispatch(fetchUser(students.map((item) => item.student)))
-        }
-    }, [isFetched])
+    // useEffect(() => {
+    //     if (isFetched) {
+    //         console.log('hello')
+    //         dispatch(fetchUser(students.map((item) => item.student)))
+    //     }
+    // }, [isFetched])
+
+    // useEffect(() => {
+    //     axios
+    //         .get(`${REACT_APP_API}/take_attendance/manual`, {
+    //             params: {
+    //                 course,
+    //                 group: index
+    //             }
+    //         })
+    //         .then((res) => {
+    //             // console.log('response from /take_attendance/manual')
+    //             // console.log(res.data)
+    //             setAttRecord(res.data)
+    //         })
+    //         .then(() => {
+    //             setMyBool(true)
+    //         })
+    // }, [isFetchedUser])
+    // console.log('current attendance record')
+    // console.log(attRecord)
+    // console.log(students)
+    // console.log(attRecord.students)
 
     const columns = [
-        { path: 'name', name: 'Student' },
+        { path: 'student', name: 'Student' },
         { path: 'checkintime', name: 'Check In Time' },
         { path: 'status', name: 'Status' },
     ]
     return (
         <>
-            <h1> Course Name : {course}</h1>
-            <h1> Index Name : {index}</h1>
-            <h1> Date : {date}</h1>
-            {isFetchedUser && (
-                <DynamicTable
-                    id="id"
-                    columns={columns}
-                    data={students.map((item) => item)}
-                    takeAttendance
-                />
-            )}
+            <h1 style={{display: 'flex', alignItems : 'center', justifyContent: 'center'}}> Course Name : {course}</h1>
+            <h3 style={{display: 'flex', alignItems : 'center', justifyContent: 'center'}}> Index Name : {index}</h3>
+            <h3 style={{display: 'flex', alignItems : 'center', justifyContent: 'center'}}> Date : {date}</h3>
+            <TableAttendance
+                attendanceId={id}
+                students={students}
+                session={id}
+                course={course}
+                group={index}
+            />
         </>
     )
 }
