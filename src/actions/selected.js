@@ -34,3 +34,9 @@ export const selectStatus = (status, id) => (dispatch) => {
         id,
     })
 }
+
+export const resetSelected = () => (dispatch) => {
+    dispatch({
+        type: ATTENDANCE.RESET_SELECTED,
+    })
+}

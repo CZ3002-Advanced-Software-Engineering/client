@@ -25,7 +25,6 @@ const ViewAttendance = () => {
         { path: 'name', name: 'Student' },
         { path: 'checkintime', name: 'Check In Time' },
         { path: 'status', name: 'Status' },
-        { path: 'documents', name: 'Documents' },
     ]
 
     return (

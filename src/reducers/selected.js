@@ -22,9 +22,10 @@ export const selectedAttendance = (
                 date: action.date,
             }
         case USER.LOG_OUT:
+        case ATTENDANCE.RESET_SELECTED:
             return {
                 course: '',
-                index: {},
+                index: '',
                 date: '',
             }
         default:
