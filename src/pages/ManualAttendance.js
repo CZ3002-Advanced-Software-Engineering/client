@@ -58,9 +58,9 @@ const ManualAttendance = () => {
     ]
     return (
         <>
-            <h1> Course Name : {course}</h1>
-            <h1> Index Name : {index}</h1>
-            <h1> Date : {date}</h1>
+            <h1 style={{display: 'flex', alignItems : 'center', justifyContent: 'center'}}> Course Name : {course}</h1>
+            <h3 style={{display: 'flex', alignItems : 'center', justifyContent: 'center'}}> Index Name : {index}</h3>
+            <h3 style={{display: 'flex', alignItems : 'center', justifyContent: 'center'}}> Date : {date}</h3>
             <TableAttendance
                 attendanceId={id}
                 students={students}

@@ -21,7 +21,7 @@ const TakeAttendance = () => {
                 HeroHeader="Take Attendance"
                 HeroPara="Please choose the method of taking attendance"
             />
-            <CourseSelectionFilter mydate={true}/>
+            <CourseSelectionFilter mydate={false}/>
             <InfoCards {...takeAttendanceTeacherBox} />
         </>
     )

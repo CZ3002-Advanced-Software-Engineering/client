@@ -95,7 +95,7 @@ const TableAttendance = ({
 
     return (
         <>
-            <h1>table here</h1>
+            
             <form onSubmit={onSubmit}>
                 <table style={tableSyle}>
                     <tbody>
