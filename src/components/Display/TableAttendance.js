@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { selectStatus } from '../../actions/selected'
 import { submitAttendance } from '../../actions/attendance'
 
+
 const tableSyle = {
     border: '1px solid #1AC57F',
     borderWidth: '1px green',
@@ -53,6 +54,10 @@ const TableAttendance = ({
         console.log('data submitted')
     }
 
+    const myDate = new Date()
+    // eslint-disable-next-line prefer-template
+    const time = myDate.toLocaleTimeString('en-us')
+    console.log(time)
     // axios
     //     .get(`${REACT_APP_API}/get_data/student=615abd43789fb41cf8fd3269`, {
 
@@ -119,7 +124,8 @@ const TableAttendance = ({
                                             dispatch(
                                                 selectStatus(
                                                     e.target.value,
-                                                    student.student
+                                                    student.student,
+                                                    myDate.toLocaleTimeString('en-us')
                                                 )
                                             )
                                         }
@@ -134,7 +140,8 @@ const TableAttendance = ({
                     </tbody>
                 </table>
             </form>
-            <button type="submit" onClick={handleSubmit}>
+            <button type="submit" onClick={handleSubmit} style={{'background-color':'#069459', 'color':'black', 'fontWeight':'bold', display: 'flex', 
+            alignItems : 'center', justifyContent: 'center', 'margin-top': 20, 'margin-left': '33%', 'width' : '33%', }}>
                 Submit
             </button>
         </>

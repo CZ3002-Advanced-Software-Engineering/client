@@ -122,9 +122,9 @@ const CourseSelectionFilter = ({ mydate }) => {
                                 formatDate={formatDate}
                                 parseDate={parseDate}
                                 placeholder="Select Date"
-                                dayPickerProps={{
-                                    disabledDays: disable,
-                                }}
+                                // dayPickerProps={{
+                                //     disabledDays: disable,
+                                // }}
                                 onDayChange={(day) => {
                                     if (day) {
                                         dispatch(

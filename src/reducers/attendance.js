@@ -40,7 +40,7 @@ export const attendance = (
                 ...state,
                 students: state.students.map((student) =>
                     student.student === action.id
-                        ? { ...student, status: action.status }
+                        ? { ...student, status: action.status, checkintime: action.time }
                         : student
                 ),
             }
