@@ -32,7 +32,7 @@ const ViewAttendance = () => {
             <h1> Course Name : {course}</h1>
             <h1> Index Name : {index}</h1>
             <h1> Date : {date}</h1>
-            {isFetchedUser && (
+            {isFetchedUser ? (
                 <DynamicTable
                     id="id"
                     columns={columns}
@@ -44,6 +44,8 @@ const ViewAttendance = () => {
                               )
                     }
                 />
+            ) : (
+                <h1>No attendance record</h1>
             )}
         </>
     )

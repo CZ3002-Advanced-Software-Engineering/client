@@ -33,11 +33,13 @@ const ViewAbsentee = () => {
     return (
         <>
             <button onClick={handleClick}>hello</button>
-            {isFetchedUser && (
+            {isFetchedUser ? (
                 <DynamicTable
                     columns={columns}
                     data={data.map((item) => item)}
                 />
+            ) : (
+                <h1>No attendance record</h1>
             )}
         </>
     )

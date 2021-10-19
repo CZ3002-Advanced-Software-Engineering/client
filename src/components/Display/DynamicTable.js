@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import axios from 'axios'
 import { NormalButton, NormalButtonWrapper } from '../ButtonElements'
 
@@ -29,15 +29,44 @@ const tdStyle = {
 }
 
 const DynamicTable = ({ id, columns, data, takeAttendance }) => {
+    const fileInputRef = useRef()
+
     const handleDownload = (fileId) => {
-        console.log(fileId)
         axios
-            .get(`${process.env.REACT_APP_API}/download/${fileId}`)
-            .then((res) => console.log(res.data))
+            .get(`${process.env.REACT_APP_API}/download/${fileId}`, {
+                responseType: 'blob',
+            })
+            .then((res) => {
+                const url = window.URL.createObjectURL(new Blob([res.data]))
+                const link = document.createElement('a')
+                link.href = url
+                link.setAttribute('download', 'file.pdf')
+                document.body.appendChild(link)
+                link.click()
+            })
     }
 
-    const handleUpload = () => {
-        console.log('i am in upload')
+    const handleUpload = (e, studentId, attendanceId) => {
+        // e.preventDefault()
+        const formData = new FormData()
+        formData.append('document', e.target.files[0])
+        console.log(formData)
+        console.log(studentId)
+        console.log(attendanceId)
+        axios
+            .post(`${process.env.REACT_APP_API}/upload`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                params: {
+                    studentId,
+                    attendanceId,
+                },
+            })
+            .then((res) => {
+                console.log(`success${res.data}`)
+            })
+            .catch((e) => console.error(e))
     }
     return (
         <div>
@@ -75,10 +104,26 @@ const DynamicTable = ({ id, columns, data, takeAttendance }) => {
                                         ) : (
                                             <NormalButtonWrapper>
                                                 <NormalButton
-                                                    onClick={handleUpload}
+                                                    onClick={() => {
+                                                        fileInputRef.current.click()
+                                                    }}
                                                 >
                                                     Upload
                                                 </NormalButton>
+                                                <input
+                                                    type="file"
+                                                    name="document"
+                                                    ref={fileInputRef}
+                                                    hidden
+                                                    multiple={false}
+                                                    onChange={(e) =>
+                                                        handleUpload(
+                                                            e,
+                                                            rowData.student,
+                                                            rowData.id
+                                                        )
+                                                    }
+                                                />
                                             </NormalButtonWrapper>
                                         )
                                     ) : (
