@@ -32,11 +32,13 @@ const DynamicTable = ({ id, columns, data, takeAttendance }) => {
     const fileInputRef = useRef()
 
     const handleDownload = (fileId) => {
+        console.log('handleDownload function')
         axios
             .get(`${process.env.REACT_APP_API}/download/${fileId}`, {
                 responseType: 'blob',
             })
             .then((res) => {
+                console.log('res data', res.data)
                 const url = window.URL.createObjectURL(new Blob([res.data]))
                 const link = document.createElement('a')
                 link.href = url
@@ -64,6 +66,7 @@ const DynamicTable = ({ id, columns, data, takeAttendance }) => {
                 },
             })
             .then((res) => {
+                console.log(formData)
                 console.log(`success${res.data}`)
             })
             .catch((e) => console.error(e))
