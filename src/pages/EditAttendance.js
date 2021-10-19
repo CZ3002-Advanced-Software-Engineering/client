@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import TableAttendance from '../components/Display/TableAttendance'
-import { fetchAttendance, fetchExistingSessionID } from '../actions/attendance'
+import { fetchAttendance } from '../actions/attendance'
 
 
 const EditAttendance = () => {
