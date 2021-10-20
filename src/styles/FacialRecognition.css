@@ -1,0 +1,17 @@
+.webcam {
+    margin: 'auto';
+    width: 100vh;
+    height: 80vh;
+}
+
+.spinner {
+    margin: 100px;
+}
+
+.container {
+    text-align: center;
+}
+
+.captureBtn {
+    margin: 20px;
+}

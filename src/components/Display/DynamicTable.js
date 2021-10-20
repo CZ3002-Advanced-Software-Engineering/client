@@ -68,6 +68,7 @@ const DynamicTable = ({ id, columns, data, takeAttendance }) => {
             })
             .then((res) => {
                 console.log(`success${res.data}`)
+                alert('Document submitted successfully.')
             })
             .catch((e) => console.error(e))
     }

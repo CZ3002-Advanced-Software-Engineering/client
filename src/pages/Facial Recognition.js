@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Button, Container, Spinner } from 'react-bootstrap'
+import { SyncLoader } from 'react-spinners'
 import axios from 'axios'
 import Webcam from 'react-webcam'
 import { useSelector } from 'react-redux'
-// import '../styles/face.css'
+import '../styles/FacialRecognition.css'
 
 export default function FacialRecognition() {
     const webcam = useRef(null)
@@ -57,13 +58,18 @@ export default function FacialRecognition() {
             <Container className="container">
                 {loading ? (
                     <div>
-                        <Spinner
-                            className="spinner"
-                            animation="border"
-                            variant="success"
-                            size="lg"
+                        <SyncLoader
+                            size={15}
+                            margin={2}
+                            color="#01BF71"
+                            css={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                margin: '100px',
+                            }}
                         />
-                        <h4>Loading attendance list...</h4>
+                        <h3>Loading attendance list...</h3>
                     </div>
                 ) : (
                     <Webcam
