@@ -42,17 +42,19 @@ const ViewAttendance = () => {
             <Title title={`Index Name: ${index}`} />
             <Title title={`Date: ${date}`} />
             {isFetchedUser ? (
-                <DynamicTable
-                    id="id"
-                    columns={columns}
-                    data={
-                        domain === 'teacher'
-                            ? students
-                            : students.filter(
-                                  (student) => student.student === _id
-                              )
-                    }
-                />
+                <>
+                    <DynamicTable
+                        id="id"
+                        columns={columns}
+                        data={
+                            domain === 'teacher'
+                                ? students
+                                : students.filter(
+                                      (student) => student.student === _id
+                                  )
+                        }
+                    />
+                </>
             ) : (
                 <h1>No attendance record</h1>
             )}

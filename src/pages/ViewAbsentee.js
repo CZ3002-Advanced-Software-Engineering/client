@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { SyncLoader } from 'react-spinners'
 import { fetchAbsentees, fetchStudentAbsentee } from '../actions/absentee'
 import DynamicTable from '../components/Display/DynamicTable'
 import Navbar from '../components/Navbar'
@@ -21,7 +22,9 @@ const ViewAbsentee = () => {
 
     const { domain } = useSelector((state) => state.user)
 
-    const { data, isFetchedUser } = useSelector((state) => state.absentee)
+    const { data, isFetchedUser, isLoading } = useSelector(
+        (state) => state.absentee
+    )
 
     useEffect(() => {
         if (domain === 'teacher') {
@@ -38,7 +41,18 @@ const ViewAbsentee = () => {
                 }
             />
             <Title title="Absentees for your courses" />
-            {isFetchedUser ? (
+            <SyncLoader
+                loading={isLoading}
+                size={15}
+                margin={2}
+                color="#01BF71"
+                css={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                }}
+            />
+            {isFetchedUser && !isLoading ? (
                 <DynamicTable
                     columns={columns}
                     data={data.map((item) => item)}
