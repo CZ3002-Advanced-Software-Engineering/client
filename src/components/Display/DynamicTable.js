@@ -31,7 +31,8 @@ const tdStyle = {
 
 const DynamicTable = ({ id, columns, data, takeAttendance }) => {
     const fileInputRef = useRef()
-
+    const fileInput2Ref = useRef()
+    console.log('columns ', columns)
     const { domain } = useSelector((state) => state.user)
     const handleDownload = (fileId) => {
         axios
@@ -131,7 +132,7 @@ const DynamicTable = ({ id, columns, data, takeAttendance }) => {
                                                     <>
                                                         <NormalButton
                                                             onClick={() => {
-                                                                fileInputRef.current.click()
+                                                                fileInput2Ref.current.click()
                                                             }}
                                                         >
                                                             Upload
@@ -139,7 +140,7 @@ const DynamicTable = ({ id, columns, data, takeAttendance }) => {
                                                         <input
                                                             type="file"
                                                             name="document"
-                                                            ref={fileInputRef}
+                                                            ref={fileInput2Ref}
                                                             hidden
                                                             multiple={false}
                                                             onChange={(e) =>
