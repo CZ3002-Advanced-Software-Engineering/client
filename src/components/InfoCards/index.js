@@ -38,16 +38,12 @@ const InfoCards = ({
         <InfoCardH1 headerColor={headerColor}>{header}</InfoCardH1>
         <InfoCardWrapper>
             {boxes.map((box) => (
-<<<<<<< Updated upstream
-                <InfoCard to={box.path} boxColor={boxColor} key={box.id} s>
-=======
                 <InfoCard to={box.path} boxColor={boxColor} key={box.id} 
                 style={{pointerEvents: 
                     (box.header === "Edit" && date && course && index) ||
                     (box.header === "Facial Recognition" && course && index && date==="") ||
                     (box.header === "Manual" && course && index && date==="")
                 ? 'auto' :'none'}}>
->>>>>>> Stashed changes
                     <InfoCardIcon src={box.img} alt={box.alt} />
                     <InfoCardH2 boxHeaderColor={boxHeaderColor}>
                         {box.header}
