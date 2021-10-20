@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-boolean-value */
 import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import Navbar from '../components/Navbar'
 import HeroSection from '../components/HeroSection'
 import InfoCards from '../components/InfoCards'
@@ -13,6 +14,9 @@ const TakeAttendance = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+    const { course, index, date } = useSelector(
+        (state) => state.selectedAttendance
+    )
 
     return (
         <>
@@ -20,8 +24,10 @@ const TakeAttendance = () => {
             <HeroSection
                 HeroHeader="Take Attendance"
                 HeroPara="Please choose the method of taking attendance"
+                scroll
+                getStartedButton="searchFilter"
             />
-            <CourseSelectionFilter mydate={false}/>
+            <CourseSelectionFilter mydate={false} />
             <InfoCards {...takeAttendanceTeacherBox} />
         </>
     )

@@ -87,7 +87,6 @@ const CourseSelectionFilter = ({ mydate }) => {
                                 name="index"
                                 id="index"
                                 value={index}
-                                defaultValue="TS1"
                                 onChange={(e) =>
                                     dispatch(selectIndex(e.target.value))
                                 }

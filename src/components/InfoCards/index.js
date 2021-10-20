@@ -29,7 +29,7 @@ const InfoCards = ({
         <InfoCardH1 headerColor={headerColor}>{header}</InfoCardH1>
         <InfoCardWrapper>
             {boxes.map((box) => (
-                <InfoCard to={box.path} boxColor={boxColor} key={box.id}>
+                <InfoCard to={box.path} boxColor={boxColor} key={box.id} s>
                     <InfoCardIcon src={box.img} alt={box.alt} />
                     <InfoCardH2 boxHeaderColor={boxHeaderColor}>
                         {box.header}

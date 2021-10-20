@@ -38,6 +38,12 @@ const Navbar = ({ toggle, info }) => {
         }
     }
 
+    const scrollWithOffset = (el) => {
+        const y = el.getBoundingClientRect().top + window.pageYOffset
+        const yOffset = -120
+        window.scrollTo({ top: y + yOffset, behavior: 'smooth' })
+    }
+
     useEffect(() => {
         window.addEventListener('scroll', changeNav)
     }, [])
@@ -47,36 +53,6 @@ const Navbar = ({ toggle, info }) => {
      */
     const toggleHome = () => {
         scroll.scrollToTop()
-    }
-    /**
-     * Scrolls to the section of packages in home page
-     */
-    const goToPackages = () => {
-        // history.push('/')
-        scroll.scrollTo(800)
-    }
-
-    /**
-     * Scrolls to the section of parlours in home page
-     */
-    const goToParlours = () => {
-        history.push('/')
-        scroll.scrollTo(1700)
-    }
-
-    /**
-     * Scrolls to the section of Location in home page
-     */
-    const goToMap = () => {
-        history.push('/')
-        scroll.scrollTo(2500)
-    }
-    /**
-     * Scrolls to the section of information in home page
-     */
-    const goToInfo = () => {
-        history.push('/')
-        scroll.scrollTo(3400)
     }
 
     const handleLogOut = () => {
@@ -97,7 +73,11 @@ const Navbar = ({ toggle, info }) => {
                         <NavMenu>
                             {info.map((item) => (
                                 <NavItem key={item.link}>
-                                    <NavLinks to={`/#${item.link}`} smooth>
+                                    <NavLinks
+                                        to={`/#${item.link}`}
+                                        smooth
+                                        scroll={(el) => scrollWithOffset(el)}
+                                    >
                                         {item.text}
                                     </NavLinks>
                                 </NavItem>

@@ -36,7 +36,8 @@ const Home = () => {
                     <HeroSection
                         HeroHeader="Welcome"
                         HeroPara={data.name}
-                        getStartedButton="faff"
+                        scroll
+                        getStartedButton="take_attendance"
                     />
                     <InfoSection {...takeAttendanceDesc} />
                     <InfoSection {...viewAttendanceDescTeacher} />
@@ -54,7 +55,8 @@ const Home = () => {
                     <HeroSection
                         HeroHeader="Welcome"
                         HeroPara={data.name}
-                        getStartedButton="faff"
+                        scroll
+                        getStartedButton="view_attendance_student"
                     />
                     <InfoSection {...viewAttendanceDescStudent} />
                     <InfoSection {...submitDocumentsDesc} />

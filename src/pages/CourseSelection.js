@@ -37,6 +37,8 @@ const CourseSelection = ({ match }) => {
             <HeroSection
                 HeroHeader="Choose your course and index"
                 HeroPara="Choose the date too"
+                getStartedButton="searchFilter"
+                scroll
             />
             <CourseSelectionFilter />
             <BtnWrapper>

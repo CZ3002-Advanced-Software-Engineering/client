@@ -48,6 +48,7 @@ export const InfoCard = styled(LinkR)`
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     transition: all 0.2s ease-in-out;
     text-decoration: none;
+
     &:hover {
         transform: scale(1.02);
         transition: all 0.2s ease-in-out;
