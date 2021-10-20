@@ -25,6 +25,7 @@ const CourseSelection = ({ match }) => {
     const handleClick = (e) => {
         if (!(course && index && date)) {
             e.preventDefault()
+            alert('Please choose a course, index and date')
         }
     }
     return (
