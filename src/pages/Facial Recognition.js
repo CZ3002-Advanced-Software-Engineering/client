@@ -2,17 +2,17 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Button, Container, Spinner } from 'react-bootstrap'
 import axios from 'axios'
 import Webcam from 'react-webcam'
+import { useSelector } from 'react-redux'
 // import '../styles/face.css'
 
 export default function FacialRecognition() {
     const webcam = useRef(null)
 
-    const course = 'CZ3002'
-    const group = 'TS1'
-
     const [name, setName] = useState('')
     const [loading, setLoading] = useState(true)
     const [processing, setProcessing] = useState(false)
+
+    const { course, index } = useSelector((state) => state.selectedAttendance)
 
     const videoConstraints = {
         width: 640,
@@ -22,9 +22,10 @@ export default function FacialRecognition() {
 
     // calling the back to prep data
     useEffect(() => {
+        console.log(course, index)
         axios
             .get(
-                `http://127.0.0.1:5000/take_attendance/face?course=${course}&group=${group}`
+                `http://127.0.0.1:5000/take_attendance/face?course=${course}&group=${index}`
             )
             .then((res) => {
                 if (res.status === 200) {
