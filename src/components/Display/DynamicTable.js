@@ -100,9 +100,29 @@ const DynamicTable = ({ id, columns, data, takeAttendance }) => {
                                                     Download
                                                 </NormalButton>
                                                 {domain === 'student' && (
-                                                    <NormalButton>
-                                                        Upload
-                                                    </NormalButton>
+                                                    <>
+                                                        <NormalButton
+                                                            onClick={() => {
+                                                                fileInputRef.current.click()
+                                                            }}
+                                                        >
+                                                            Upload
+                                                        </NormalButton>
+                                                        <input
+                                                            type="file"
+                                                            name="document"
+                                                            ref={fileInputRef}
+                                                            hidden
+                                                            multiple={false}
+                                                            onChange={(e) =>
+                                                                handleUpload(
+                                                                    e,
+                                                                    rowData.student,
+                                                                    rowData.id
+                                                                )
+                                                            }
+                                                        />
+                                                    </>
                                                 )}
                                             </NormalButtonWrapper>
                                         ) : (
