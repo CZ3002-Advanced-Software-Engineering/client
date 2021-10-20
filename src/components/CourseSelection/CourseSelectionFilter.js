@@ -138,6 +138,12 @@ const CourseSelectionFilter = ({ mydate }) => {
                                                 )
                                             )
                                         )
+                                    } else {
+                                        dispatch(
+                                            selectDate(
+                                               "" 
+                                            )
+                                        )
                                     }
                                 }}
                             />

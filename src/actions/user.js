@@ -27,6 +27,7 @@ export const login = (username, password, domain) => async (dispatch) => {
             dispatch({
                 type: USER.LOGIN_FAILURE,
             })
+            alert('Username password entered is incorrect')
         })
 }
 
@@ -34,6 +35,7 @@ export const logOut = () => (dispatch) => {
     dispatch({
         type: USER.LOG_OUT,
     })
+    alert('You have been logged out')
 }
 
 export const fetchUser = (ids) => (dispatch) => {

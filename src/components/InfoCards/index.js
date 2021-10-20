@@ -1,4 +1,6 @@
+import { nonMaxSuppression } from 'face-api.js'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import {
     InfoCard,
     InfoCardContainer,
@@ -24,12 +26,28 @@ const InfoCards = ({
     boxTextColor,
     header,
     boxes,
-}) => (
+}) => {
+
+    const { course, index, date } = useSelector(
+        (state) => state.selectedAttendance
+    )
+
+
+    return(
     <InfoCardContainer id={id} backgroundColor={backgroundColor}>
         <InfoCardH1 headerColor={headerColor}>{header}</InfoCardH1>
         <InfoCardWrapper>
             {boxes.map((box) => (
+<<<<<<< Updated upstream
                 <InfoCard to={box.path} boxColor={boxColor} key={box.id} s>
+=======
+                <InfoCard to={box.path} boxColor={boxColor} key={box.id} 
+                style={{pointerEvents: 
+                    (box.header === "Edit" && date && course && index) ||
+                    (box.header === "Facial Recognition" && course && index && date==="") ||
+                    (box.header === "Manual" && course && index && date==="")
+                ? 'auto' :'none'}}>
+>>>>>>> Stashed changes
                     <InfoCardIcon src={box.img} alt={box.alt} />
                     <InfoCardH2 boxHeaderColor={boxHeaderColor}>
                         {box.header}
@@ -41,7 +59,7 @@ const InfoCards = ({
             ))}
         </InfoCardWrapper>
     </InfoCardContainer>
-)
+)}
 
 InfoCards.defaultProps = {
     boxes: [],
