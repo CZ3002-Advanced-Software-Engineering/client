@@ -28,12 +28,23 @@ export const viewAttendance = (course, index, date) => (dispatch) => {
 }
 
 export const selectStatus = (status, id, time) => (dispatch) => {
-    dispatch({
-        type: ATTENDANCE.SELECTED_STATUS,
-        status,
-        id,
-        time,
-    })
+    if (status === 'absent') {
+        const setTime = "-"
+        dispatch({
+            type: ATTENDANCE.SELECTED_STATUS,
+            status,
+            id,
+            time: setTime,
+        })
+    } else {
+        const setTime = time
+        dispatch({
+            type: ATTENDANCE.SELECTED_STATUS,
+            status,
+            id,
+            time: setTime,
+        })
+    } 
 }
 
 export const resetSelected = () => (dispatch) => {
