@@ -2,11 +2,11 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { SyncLoader } from 'react-spinners'
 import { fetchAbsentees, fetchStudentAbsentee } from '../actions/absentee'
-import DynamicTable from '../components/Display/DynamicTable'
 import Navbar from '../components/Navbar'
 import { NavBarInfo as NavBarInfoTeacher } from '../components/Teacher/Data'
 import { NavBarInfo as NavBarInfoStudent } from '../components/Student/Data'
 import Title from '../components/Shared/Title'
+import DynamicTable from '../components/Display/DynamicTable'
 
 const ViewAbsentee = () => {
     const dispatch = useDispatch()
@@ -49,7 +49,7 @@ const ViewAbsentee = () => {
                 css={{
                     display: 'flex',
                     justifyContent: 'center',
-                    alignSelf: 'center',
+                    alignItems: 'center',
                 }}
             />
             {isFetchedUser && !isLoading ? (
