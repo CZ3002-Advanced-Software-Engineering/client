@@ -41,14 +41,10 @@ export const submitDocumentsDesc = {
 export const NavBarInfo = [
     {
         text: 'View Attendance',
-        link: '/view_attendance_student',
+        link: 'view_attendance_student',
     },
     {
         text: 'Submit Documents',
-        link: '/view_absent',
-    },
-    {
-        text: 'Account',
-        link: '/account',
+        link: 'submit_documents',
     },
 ]

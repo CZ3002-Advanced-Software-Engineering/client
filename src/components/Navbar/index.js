@@ -97,7 +97,7 @@ const Navbar = ({ toggle, info }) => {
                         <NavMenu>
                             {info.map((item) => (
                                 <NavItem key={item.link}>
-                                    <NavLinks to={item.link} smooth>
+                                    <NavLinks to={`/#${item.link}`} smooth>
                                         {item.text}
                                     </NavLinks>
                                 </NavItem>

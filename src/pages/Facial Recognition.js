@@ -22,7 +22,6 @@ export default function FacialRecognition() {
 
     // calling the back to prep data
     useEffect(() => {
-        console.log(course, index)
         axios
             .get(
                 `http://127.0.0.1:5000/take_attendance/face?course=${course}&group=${index}`

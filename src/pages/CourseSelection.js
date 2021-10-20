@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import CourseSelectionFilter from '../components/CourseSelection/CourseSelectionFilter'
 import { Button } from '../components/ButtonElements'
-import Navbar from '../components/Navbar'
 import HeroSection from '../components/HeroSection'
 import { BtnWrap } from '../components/InfoSection/InfoElements'
+import Navbar from '../components/Navbar'
+import { NavBarInfo as NavBarInfoTeacher } from '../components/Teacher/Data'
+import { NavBarInfo as NavBarInfoStudent } from '../components/Student/Data'
 
 const BtnWrapper = styled(BtnWrap)`
     justify-content: center;
@@ -16,6 +18,8 @@ const CourseSelection = ({ match }) => {
         (state) => state.selectedAttendance
     )
 
+    const { domain } = useSelector((state) => state.user)
+
     const { slug } = match.params
 
     const handleClick = (e) => {
@@ -25,7 +29,11 @@ const CourseSelection = ({ match }) => {
     }
     return (
         <>
-            <Navbar />
+            <Navbar
+                info={
+                    domain === 'teacher' ? NavBarInfoTeacher : NavBarInfoStudent
+                }
+            />
             <HeroSection
                 HeroHeader="Choose your course and index"
                 HeroPara="Choose the date too"

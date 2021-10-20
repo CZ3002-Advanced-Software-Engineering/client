@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 import { NormalButton, NormalButtonWrapper } from '../ButtonElements'
 
 const tableSyle = {
@@ -31,6 +32,7 @@ const tdStyle = {
 const DynamicTable = ({ id, columns, data, takeAttendance }) => {
     const fileInputRef = useRef()
 
+    const { domain } = useSelector((state) => state.user)
     const handleDownload = (fileId) => {
         axios
             .get(`${process.env.REACT_APP_API}/download/${fileId}`, {
@@ -97,33 +99,39 @@ const DynamicTable = ({ id, columns, data, takeAttendance }) => {
                                                 >
                                                     Download
                                                 </NormalButton>
-                                                <NormalButton>
-                                                    Upload
-                                                </NormalButton>
+                                                {domain === 'student' && (
+                                                    <NormalButton>
+                                                        Upload
+                                                    </NormalButton>
+                                                )}
                                             </NormalButtonWrapper>
                                         ) : (
                                             <NormalButtonWrapper>
-                                                <NormalButton
-                                                    onClick={() => {
-                                                        fileInputRef.current.click()
-                                                    }}
-                                                >
-                                                    Upload
-                                                </NormalButton>
-                                                <input
-                                                    type="file"
-                                                    name="document"
-                                                    ref={fileInputRef}
-                                                    hidden
-                                                    multiple={false}
-                                                    onChange={(e) =>
-                                                        handleUpload(
-                                                            e,
-                                                            rowData.student,
-                                                            rowData.id
-                                                        )
-                                                    }
-                                                />
+                                                {domain === 'student' && (
+                                                    <>
+                                                        <NormalButton
+                                                            onClick={() => {
+                                                                fileInputRef.current.click()
+                                                            }}
+                                                        >
+                                                            Upload
+                                                        </NormalButton>
+                                                        <input
+                                                            type="file"
+                                                            name="document"
+                                                            ref={fileInputRef}
+                                                            hidden
+                                                            multiple={false}
+                                                            onChange={(e) =>
+                                                                handleUpload(
+                                                                    e,
+                                                                    rowData.student,
+                                                                    rowData.id
+                                                                )
+                                                            }
+                                                        />
+                                                    </>
+                                                )}
                                             </NormalButtonWrapper>
                                         )
                                     ) : (

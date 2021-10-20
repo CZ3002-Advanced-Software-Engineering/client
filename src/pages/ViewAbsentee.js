@@ -2,6 +2,10 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAbsentees, fetchStudentAbsentee } from '../actions/absentee'
 import DynamicTable from '../components/Display/DynamicTable'
+import Navbar from '../components/Navbar'
+import { NavBarInfo as NavBarInfoTeacher } from '../components/Teacher/Data'
+import { NavBarInfo as NavBarInfoStudent } from '../components/Student/Data'
+import Title from '../components/Shared/Title'
 
 const ViewAbsentee = () => {
     const dispatch = useDispatch()
@@ -26,13 +30,14 @@ const ViewAbsentee = () => {
             dispatch(fetchStudentAbsentee(_id))
         }
     }, [])
-
-    const handleClick = () => {
-        console.log(data)
-    }
     return (
         <>
-            <button onClick={handleClick}>hello</button>
+            <Navbar
+                info={
+                    domain === 'teacher' ? NavBarInfoTeacher : NavBarInfoStudent
+                }
+            />
+            <Title title="Absentees for your courses" />
             {isFetchedUser ? (
                 <DynamicTable
                     columns={columns}
