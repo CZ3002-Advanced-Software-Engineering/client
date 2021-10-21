@@ -56,7 +56,7 @@ const ViewAttendance = () => {
                     />
                 </>
             ) : (
-                <h1>No attendance record</h1>
+                <h1 style={{ textAlign: 'center' }}>No attendance record</h1>
             )}
         </>
     )

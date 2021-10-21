@@ -58,6 +58,7 @@ const CourseSelection = ({ match }) => {
                         big
                         fontBig
                         onClick={handleClick}
+                        style={{ marginBottom: '50px' }}
                     >
                         Go
                     </Button>

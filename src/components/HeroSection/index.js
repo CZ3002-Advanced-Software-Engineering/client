@@ -7,8 +7,10 @@ import {
     HeroContent,
     HeroH1,
     HeroP,
+    HeroBg,
 } from './HeroElements'
 import { Button, ButtonScroll } from '../ButtonElements'
+import Image from '../../images/ntu.png'
 
 /**
  * This component is for the hero section of the webpage. The videos and scrolling of the button.
@@ -24,6 +26,9 @@ const HeroSection = ({ HeroHeader, HeroPara, getStartedButton, scroll }) => {
 
     return (
         <HeroContainer>
+            <HeroBg>
+                <img src={Image} alt="" />
+            </HeroBg>
             <HeroContent>
                 <HeroH1>{HeroHeader}</HeroH1>
                 <HeroP>{HeroPara}</HeroP>

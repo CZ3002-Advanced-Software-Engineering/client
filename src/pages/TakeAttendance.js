@@ -28,6 +28,10 @@ const TakeAttendance = () => {
                 getStartedButton="searchFilter"
             />
             <CourseSelectionFilter mydate={false} />
+            <p style={{ textAlign: 'center', marginBottom: '50px' }}>
+                Leave date empty to take attendance. Enter date to edit
+                atttendance.
+            </p>
             <InfoCards {...takeAttendanceTeacherBox} />
         </>
     )
