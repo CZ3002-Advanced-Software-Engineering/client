@@ -26,9 +26,9 @@ const HeroSection = ({ HeroHeader, HeroPara, getStartedButton, scroll }) => {
 
     return (
         <HeroContainer>
-            <HeroBg>
+            {/* <HeroBg>
                 <img src={Image} alt="" />
-            </HeroBg>
+            </HeroBg> */}
             <HeroContent>
                 <HeroH1>{HeroHeader}</HeroH1>
                 <HeroP>{HeroPara}</HeroP>

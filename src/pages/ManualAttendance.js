@@ -22,35 +22,6 @@ const ManualAttendance = () => {
         dispatch(fetchSessionID(course, index))
     }, [])
 
-    // useEffect(() => {
-    //     if (isFetched) {
-    //         console.log('hello')
-    //         dispatch(fetchUser(students.map((item) => item.student)))
-    //     }
-    // }, [isFetched])
-
-    // useEffect(() => {
-    //     axios
-    //         .get(`${REACT_APP_API}/take_attendance/manual`, {
-    //             params: {
-    //                 course,
-    //                 group: index
-    //             }
-    //         })
-    //         .then((res) => {
-    //             // console.log('response from /take_attendance/manual')
-    //             // console.log(res.data)
-    //             setAttRecord(res.data)
-    //         })
-    //         .then(() => {
-    //             setMyBool(true)
-    //         })
-    // }, [isFetchedUser])
-    // console.log('current attendance record')
-    // console.log(attRecord)
-    // console.log(students)
-    // console.log(attRecord.students)
-
     const columns = [
         { path: 'student', name: 'Student' },
         { path: 'checkintime', name: 'Check In Time' },
@@ -58,9 +29,38 @@ const ManualAttendance = () => {
     ]
     return (
         <>
-            <h1 style={{display: 'flex', alignItems : 'center', justifyContent: 'center', 'padding': 10}}> Course Name : {course}</h1>
-            <h3 style={{display: 'flex', alignItems : 'center', justifyContent: 'center'}}> Index Name : {index}</h3>
-            <h3 style={{display: 'flex', alignItems : 'center', justifyContent: 'center', 'padding-bottom': 10}}> Date : {date}</h3>
+            <h1
+                style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: 10,
+                }}
+            >
+                {' '}
+                Course Name : {course}
+            </h1>
+            <h3
+                style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+            >
+                {' '}
+                Index Name : {index}
+            </h3>
+            <h3
+                style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    'padding-bottom': 10,
+                }}
+            >
+                {' '}
+                Date : {date}
+            </h3>
             <TableAttendance
                 attendanceId={id}
                 students={students}

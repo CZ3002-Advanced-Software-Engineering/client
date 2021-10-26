@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 import { selectStatus } from '../../actions/selected'
 import { submitAttendance } from '../../actions/attendance'
 
-
 const tableSyle = {
     border: '1px solid #1AC57F',
     borderWidth: '1px green',
@@ -40,11 +39,6 @@ const TableAttendance = ({
     const { REACT_APP_API } = process.env
     const dispatch = useDispatch()
 
-    // const [tableData, setTableData] = useState([])
-    // console.log('pass attendance record here')
-    // console.log(passattrecord)
-    // const studentAttendance = passattrecord.students
-    // console.log('this is studentAttendance')
     console.log(students)
     console.log('session id', session)
     console.log('group', group)
@@ -58,39 +52,6 @@ const TableAttendance = ({
     // eslint-disable-next-line prefer-template
     const time = myDate.toLocaleTimeString('en-us')
     console.log(time)
-    // axios
-    //     .get(`${REACT_APP_API}/get_data/student=615abd43789fb41cf8fd3269`, {
-
-    //     })
-    //     .then((res) => {
-    //         console.log(res.data.name)
-    //     })
-
-    // eslint-disable-next-line array-callback-return
-    // studentAttendance.map((item) => {
-    //     console.log(item)
-    //     // console.log(item.student)
-    //     axios
-    //         .get(`${REACT_APP_API}/get_data/student=${item.student}`)
-    //         .then((res) => {
-    //             console.log(res.data.name)
-    //         })
-    // })
-
-    // console.log(studentAttendance.length)
-    // eslint-disable-next-line no-plusplus
-    // for (let i=0; i<studentAttendance.length; i++) {
-    //     console.log(studentAttendance[i].student)
-    //     axios
-    //         .get(`${REACT_APP_API}/get_all_items`, {
-    //             params: {collection: 'student', id: JSON.stringify(studentAttendance[i].student)},
-    //         })
-    //         .then((res) => {
-    //             console.log(res)
-    //         })
-    // }
-
-    // console.log('back')
 
     const handleSubmit = () => {
         dispatch(submitAttendance(attendanceId, students))
@@ -100,7 +61,6 @@ const TableAttendance = ({
 
     return (
         <>
-            
             <form onSubmit={onSubmit}>
                 <table style={tableSyle}>
                     <tbody>
@@ -125,7 +85,9 @@ const TableAttendance = ({
                                                 selectStatus(
                                                     e.target.value,
                                                     student.student,
-                                                    myDate.toLocaleTimeString('en-us')
+                                                    myDate.toLocaleTimeString(
+                                                        'en-us'
+                                                    )
                                                 )
                                             )
                                         }
@@ -140,8 +102,21 @@ const TableAttendance = ({
                     </tbody>
                 </table>
             </form>
-            <button type="submit" onClick={handleSubmit} style={{'background-color':'#069459', 'color':'black', 'fontWeight':'bold', display: 'flex', 
-            alignItems : 'center', justifyContent: 'center', 'margin-top': 20, 'margin-left': '33%', 'width' : '33%', }}>
+            <button
+                type="submit"
+                onClick={handleSubmit}
+                style={{
+                    'background-color': '#069459',
+                    color: 'black',
+                    fontWeight: 'bold',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    'margin-top': 20,
+                    'margin-left': '33%',
+                    width: '33%',
+                }}
+            >
                 Submit
             </button>
         </>
