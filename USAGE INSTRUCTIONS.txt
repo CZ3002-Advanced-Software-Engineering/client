@@ -1,0 +1,18 @@
+Teacher account:
+username: eug0001, password: 1234
+
+Student account:
+username: demo0005, password: 1234
+
+Using facial recognition attendance taking:
+1. Make sure device has webcam.
+2. Place image of self in the backend "known-people" folder and ensure filename is "demo.jpg". (name is demo and ext is jpg)
+3. Login to teacher account and go to take attendance page.
+4. Select course CZ3001.
+5. For index, choose from Demo1 to Demo7 depending on current day. (Attendance taking function is day-locked)
+6. Click "Facial Recognition" button below.
+7. Once webcam is loaded, click "Capture" to capture your image.
+8. If nothing went wrong message should say "Demo Student attendance taken".
+
+Viewing attendances:
+Use CZ3001, AB1, dates between 7-21 Oct for some existing records to view and edit.
