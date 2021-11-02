@@ -14,7 +14,7 @@ import ViewAttendance from './pages/ViewAttendance'
 import CourseSelection from './pages/CourseSelection'
 import ViewAbsentee from './pages/ViewAbsentee'
 import ManualAttendance from './pages/ManualAttendance'
-import FacialRecognition from './pages/Facial Recognition'
+import FacialRecognition from './pages/FacialRecognition'
 import EditAttendance from './pages/EditAttendance'
 
 export default function App() {
