@@ -6,7 +6,11 @@ import Webcam from 'react-webcam'
 import { useSelector } from 'react-redux'
 import '../styles/FacialRecognition.css'
 
-/** Page for taking attendance with facial recognition */
+/**
+ * UI for the facial recognition method of taking attendance
+ * @returns {JSX.Element} - UI for facial recognition
+ * @constructor
+ */
 export default function FacialRecognition() {
     const webcam = useRef(null)
 

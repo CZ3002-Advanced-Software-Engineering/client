@@ -3,7 +3,11 @@ import { ABSENTEE } from '../constants/actionTypes'
 import { store } from '../store/store'
 import { fetchUser } from './user'
 
-// eslint-disable-next-line import/prefer-default-export
+/**
+ * get absentees for teacher taught indexes
+ * @param {String} teacher teacher id
+ * @returns list of in teacher taught courses
+ */
 export const fetchAbsentees = (teacher) => (dispatch) => {
     dispatch({
         type: ABSENTEE.LOAD,
@@ -30,6 +34,11 @@ export const fetchAbsentees = (teacher) => (dispatch) => {
         })
 }
 
+/**
+ * get all absent records for student
+ * @param student student id
+ * @returns student record for absentees
+ */
 export const fetchStudentAbsentee = (student) => (dispatch) => {
     dispatch({
         type: ABSENTEE.LOAD,

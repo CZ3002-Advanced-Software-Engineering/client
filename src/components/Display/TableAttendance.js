@@ -29,6 +29,16 @@ const tdStyle = {
     width: '15rem',
 }
 
+/**
+ * UI to display the table when teacher is taking/editing attendance
+ * @param {String} attendanceId - attendance ID
+ * @param {Array} students - students in this course
+ * @param {String} session - session ID
+ * @param {String} course - Course name
+ * @param {String} group - Index name
+ * @returns {JSX.Element} - UI for the table
+ * @constructor
+ */
 const TableAttendance = ({
     attendanceId,
     students,

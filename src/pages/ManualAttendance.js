@@ -5,6 +5,11 @@ import { fetchSessionID } from '../actions/attendance'
 
 const { REACT_APP_API } = process.env
 
+/**
+ * UI for manual attendance of students
+ * @returns {JSX.Element} - Manual attendance page
+ * @constructor
+ */
 const ManualAttendance = () => {
     const x = 1
     const dispatch = useDispatch()

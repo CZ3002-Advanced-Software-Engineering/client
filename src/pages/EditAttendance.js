@@ -3,6 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import TableAttendance from '../components/Display/TableAttendance'
 import { fetchAttendance } from '../actions/attendance'
 
+/**
+ * UI for the edit attendance of students page
+ * @returns {JSX.Element} - Edit attendance page
+ * @constructor
+ */
 const EditAttendance = () => {
     const x = 1
     const dispatch = useDispatch()

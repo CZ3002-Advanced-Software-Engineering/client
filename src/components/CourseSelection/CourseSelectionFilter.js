@@ -20,9 +20,10 @@ import {
 import CurrentDateTime from '../Clock/CurrentDateTime'
 
 /**
- * Sets the filter according to what the user want
- * User can filter based on course, index, date
- * @returns CourseSelectionFilter component
+ * allows user to choose a course and index and date
+ * @param {Boolean} mydate - sets date true or false
+ * @returns {JSX.Element} UI of the filter page
+ * @constructor
  */
 const CourseSelectionFilter = ({ mydate }) => {
     // const [course, setCourse] = useState('')
@@ -139,11 +140,7 @@ const CourseSelectionFilter = ({ mydate }) => {
                                             )
                                         )
                                     } else {
-                                        dispatch(
-                                            selectDate(
-                                               "" 
-                                            )
-                                        )
+                                        dispatch(selectDate(''))
                                     }
                                 }}
                             />

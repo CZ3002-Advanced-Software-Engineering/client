@@ -7,6 +7,11 @@ import Navbar from '../components/Navbar'
 import { NavBarInfo as NavBarInfoStudent } from '../components/Student/Data'
 import { NavBarInfo as NavBarInfoTeacher } from '../components/Teacher/Data'
 
+/**
+ * UI for viewing of student attendance records
+ * @returns {JSX.Element} - View Attendance Page
+ * @constructor
+ */
 const ViewAttendance = () => {
     const dispatch = useDispatch()
 

@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { login } from '../../actions/user'
 
+/**
+ * Handles the UI for the Login page
+ * @returns {JSX.Element} - Login page
+ */
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

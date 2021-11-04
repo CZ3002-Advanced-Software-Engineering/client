@@ -3,6 +3,12 @@ import { USER } from '../constants/actionTypes'
 
 const { REACT_APP_API } = process.env
 
+/**
+ * allows user to login
+ * @param {String} username user name
+ * @param {String} password password
+ * @param {String} domain domain of user
+ */
 export const login = (username, password, domain) => async (dispatch) => {
     dispatch({
         type: USER.LOGIN_REQUEST,
@@ -31,6 +37,10 @@ export const login = (username, password, domain) => async (dispatch) => {
         })
 }
 
+/**
+ * allows user to log out
+ * @returns {(function(*): void)|*}
+ */
 export const logOut = () => (dispatch) => {
     dispatch({
         type: USER.LOG_OUT,
@@ -38,6 +48,10 @@ export const logOut = () => (dispatch) => {
     alert('You have been logged out')
 }
 
+/**
+ * allows app to fetch the users from array of ids
+ * @param {Array} ids ids of users you want to fetch
+ */
 export const fetchUser = (ids) => (dispatch) => {
     dispatch({
         type: USER.LOAD,

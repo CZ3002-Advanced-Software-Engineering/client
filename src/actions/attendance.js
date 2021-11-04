@@ -5,7 +5,13 @@ import { store } from '../store/store'
 
 const { REACT_APP_API } = process.env
 
-// eslint-disable-next-line import/prefer-default-export
+/**
+ * get a class attendance
+ * @param {String} course course ID
+ * @param {String} index index ID
+ * @param {String} date date of class
+ * @returns the attendance record
+ */
 export const fetchAttendance = (course, index, date) => (dispatch) => {
     dispatch({
         type: ATTENDANCE.FETCH_ATTENDANCE,
@@ -36,6 +42,12 @@ export const fetchAttendance = (course, index, date) => (dispatch) => {
         })
 }
 
+/**
+ * create new attendance record when taking attendance
+ * @param {String} course course ID
+ * @param {String} index index ID
+ * @returns the attendance record
+ */
 export const fetchSessionID = (course, index) => (dispatch) => {
     dispatch({
         type: ATTENDANCE.FETCH_ATTENDANCE,
@@ -68,6 +80,12 @@ export const fetchSessionID = (course, index) => (dispatch) => {
         })
 }
 
+/**
+ * submit a particular attendance
+ * @param {String} attendanceId attendance ID
+ * @param {Array} students students record
+ * @returns {*}
+ */
 export const submitAttendance = (attendanceId, students) => (dispatch) => {
     console.log('students being passed in')
     console.log(students)

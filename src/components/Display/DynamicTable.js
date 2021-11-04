@@ -29,6 +29,15 @@ const tdStyle = {
     width: '15rem',
 }
 
+/**
+ * Renders a table with values
+ * @param {String} id id
+ * @param {Array} columns column name
+ * @param {Array} data data to be placed in the table
+ * @param {Boolean} takeAttendance true or false for use in takeAttendance page
+ * @returns {JSX.Element} Table element
+ * @constructor
+ */
 const DynamicTable = ({ id, columns, data, takeAttendance }) => {
     const fileInputRef = useRef()
     const fileInput2Ref = useRef()

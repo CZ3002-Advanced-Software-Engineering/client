@@ -1,5 +1,9 @@
 import { ATTENDANCE } from '../constants/actionTypes'
 
+/**
+ * selects course
+ * @param {String} course course name
+ */
 export const selectCourse = (course) => (dispatch) => {
     dispatch({
         type: ATTENDANCE.SELECTED_COURSE,
@@ -7,6 +11,10 @@ export const selectCourse = (course) => (dispatch) => {
     })
 }
 
+/**
+ * selects index
+ * @param {String} index index name
+ */
 export const selectIndex = (index) => (dispatch) => {
     dispatch({
         type: ATTENDANCE.SELECTED_INDEX,
@@ -14,6 +22,10 @@ export const selectIndex = (index) => (dispatch) => {
     })
 }
 
+/**
+ * selects date
+ * @param {String} date date value
+ */
 export const selectDate = (date) => (dispatch) => {
     dispatch({
         type: ATTENDANCE.SELECTED_DATE,
@@ -21,15 +33,27 @@ export const selectDate = (date) => (dispatch) => {
     })
 }
 
+/**
+ * view attendance record of a particular index on a specific date
+ * @param {String} course course name
+ * @param  {String} index index name
+ * @param {String}  date date value
+ */
 export const viewAttendance = (course, index, date) => (dispatch) => {
     dispatch({
         type: ATTENDANCE.FETCH_ATTENDANCE,
     })
 }
 
+/**
+ * selects the status of a student in an attendance record
+ * @param{String} status status name
+ * @param {String} id student id
+ * @param {String} time time of change
+ */
 export const selectStatus = (status, id, time) => (dispatch) => {
     if (status === 'absent') {
-        const setTime = "-"
+        const setTime = '-'
         dispatch({
             type: ATTENDANCE.SELECTED_STATUS,
             status,
@@ -44,9 +68,12 @@ export const selectStatus = (status, id, time) => (dispatch) => {
             id,
             time: setTime,
         })
-    } 
+    }
 }
 
+/**
+ * filler function to reset all selected values
+ */
 export const resetSelected = () => (dispatch) => {
     dispatch({
         type: ATTENDANCE.RESET_SELECTED,

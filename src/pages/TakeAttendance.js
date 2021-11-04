@@ -10,6 +10,11 @@ import {
 } from '../components/Teacher/Data'
 import CourseSelectionFilter from '../components/CourseSelection/CourseSelectionFilter'
 
+/**
+ * UI for letting user to choose method of taking attendance
+ * @returns {JSX.Element} - Take Attendance Method page
+ * @constructor
+ */
 const TakeAttendance = () => {
     useEffect(() => {
         window.scrollTo(0, 0)

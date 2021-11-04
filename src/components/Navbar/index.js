@@ -21,7 +21,7 @@ import { logOut } from '../../actions/user'
  * This component is responsible for the navigation bar.
  * User can click on the navigation bar to scroll to the indiviudal infosection
  * @param {object} toggle The section that users click on
- * @returns the navbar component to be displayed at the top of the web page.
+ * @returns {JSX.Element} navbar component to be displayed at the top of the web page.
  */
 const Navbar = ({ toggle, info }) => {
     const [scrollNav, setScrollNav] = useState(false)

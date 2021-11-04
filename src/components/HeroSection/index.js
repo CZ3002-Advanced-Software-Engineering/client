@@ -7,15 +7,16 @@ import {
     HeroContent,
     HeroH1,
     HeroP,
-    HeroBg,
 } from './HeroElements'
 import { Button, ButtonScroll } from '../ButtonElements'
-import Image from '../../images/ntu.png'
 
 /**
- * This component is for the hero section of the webpage. The videos and scrolling of the button.
- * @param {object} {HeroHeader, HeroPara, getStartedButton, scroll}
- * @returns HeroSection component of the webpage
+ * General UI for webpage
+ * @param {String} HeroHeader - Header
+ * @param {String} HeroPara - Paragraph
+ * @param getStartedButton - Button
+ * @param {Boolean} scroll - True or false for react scroll
+ * @returns {JSX.Element} - UI for general section
  */
 const HeroSection = ({ HeroHeader, HeroPara, getStartedButton, scroll }) => {
     const [hover, setHover] = useState(false)

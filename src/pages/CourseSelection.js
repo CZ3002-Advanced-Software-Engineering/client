@@ -13,6 +13,11 @@ const BtnWrapper = styled(BtnWrap)`
     justify-content: center;
 `
 
+/**
+ * UI for the Course selection page
+ * @param {String} match - slug
+ * @returns {JSX.Element} - Course Selection page
+ */
 const CourseSelection = ({ match }) => {
     const { course, index, date } = useSelector(
         (state) => state.selectedAttendance

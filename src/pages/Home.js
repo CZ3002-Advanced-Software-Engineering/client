@@ -16,6 +16,10 @@ import {
 } from '../components/Student/Data'
 import Sidebar from '../components/SideBar'
 
+/**
+ * UI for the home page
+ * @returns {JSX.Element} - Home Page
+ */
 const Home = () => {
     const { domain, data } = useSelector((state) => state.user)
     const [isOpen, setIsOpen] = useState(false)

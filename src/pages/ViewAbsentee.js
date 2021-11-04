@@ -8,6 +8,11 @@ import { NavBarInfo as NavBarInfoStudent } from '../components/Student/Data'
 import Title from '../components/Shared/Title'
 import DynamicTable from '../components/Display/DynamicTable'
 
+/**
+ * UI for viewing of absentee records
+ * @returns {JSX.Element} - View Absentee page
+ * @constructor
+ */
 const ViewAbsentee = () => {
     const dispatch = useDispatch()
     const columns = [

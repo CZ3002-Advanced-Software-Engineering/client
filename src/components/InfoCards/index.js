@@ -11,10 +11,16 @@ import {
 } from './InfoCardElements'
 
 /**
- * This component displays the individual boxes for location and information.
- * Renders the box, image and name of each individual box.
- * @param {*} param0
- * @returns Services component.
+ * Function to display UI for selection of taking attendance
+ * @param id - id
+ * @param backgroundColor - Background color
+ * @param headerColor - Header color
+ * @param boxColor - Box color
+ * @param boxHeaderColor - Box header color
+ * @param boxTextColor - Box test color
+ * @param header - header text
+ * @param boxes - boxes to be placed in the element
+ * @returns {JSX.Element} - UI for the boxes
  */
 const InfoCards = ({
     id,
